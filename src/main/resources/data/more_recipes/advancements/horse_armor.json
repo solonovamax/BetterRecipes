@@ -1,0 +1,30 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:leather_horse_armor",
+            "more_recipes:iron_horse_armor",
+            "more_recipes:gold_horse_armor",
+            "more_recipes:diamond_horse_armor"
+        ]
+    },
+    "criteria":     {
+        "has_saddle": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:saddle"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_saddle"
+        ]
+    ]
+}

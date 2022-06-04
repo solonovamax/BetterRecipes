@@ -1,0 +1,36 @@
+{
+    "type":        "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:gold_ingot"
+        },
+        {
+            "item": "minecraft:gold_ingot"
+        },
+        {
+            "item": "minecraft:gold_ingot"
+        },
+        {
+            "item": "minecraft:gold_ingot"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        }
+    ],
+    "result":      {
+        "item":  "minecraft:gold_ore",
+        "count": 1
+    }
+}

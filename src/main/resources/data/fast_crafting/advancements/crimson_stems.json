@@ -1,0 +1,28 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "fast_crafting:crimson_door",
+            "fast_crafting:crimson_pressure_plate",
+            "fast_crafting:crimson_stairs",
+            "fast_crafting:crimson_trapdoor"
+        ]
+    },
+    "criteria":     {
+        "has_stem": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "minecraft:crimson_stems"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_sten"
+        ]
+    ]
+}

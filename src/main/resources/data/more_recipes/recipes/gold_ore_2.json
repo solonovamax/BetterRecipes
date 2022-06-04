@@ -1,0 +1,36 @@
+{
+    "type":        "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:raw_gold"
+        },
+        {
+            "item": "minecraft:raw_gold"
+        },
+        {
+            "item": "minecraft:raw_gold"
+        },
+        {
+            "item": "minecraft:raw_gold"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        }
+    ],
+    "result":      {
+        "item":  "minecraft:gold_ore",
+        "count": 1
+    }
+}

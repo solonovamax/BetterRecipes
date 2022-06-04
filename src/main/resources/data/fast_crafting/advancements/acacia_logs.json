@@ -1,0 +1,28 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "fast_crafting:acacia_door",
+            "fast_crafting:acacia_pressure_plate",
+            "fast_crafting:acacia_stairs",
+            "fast_crafting:acacia_trapdoor"
+        ]
+    },
+    "criteria":     {
+        "has_log": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "minecraft:acacia_logs"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_log"
+        ]
+    ]
+}

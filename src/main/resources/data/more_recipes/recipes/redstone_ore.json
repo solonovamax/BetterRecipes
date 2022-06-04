@@ -1,0 +1,36 @@
+{
+    "type":        "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:redstone_block"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        },
+        {
+            "item": "minecraft:stone"
+        }
+    ],
+    "result":      {
+        "item":  "minecraft:redstone_ore",
+        "count": 1
+    }
+}

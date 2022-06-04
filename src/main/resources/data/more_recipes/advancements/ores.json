@@ -1,0 +1,49 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:coal_ore",
+            "more_recipes:copper_ore_1",
+            "more_recipes:copper_ore_2",
+            "more_recipes:deepslate_coal_ore",
+            "more_recipes:deepslate_diamond_ore",
+            "more_recipes:deepslate_emerald_ore",
+            "more_recipes:deepslate_gold_ore_1",
+            "more_recipes:deepslate_gold_ore_2",
+            "more_recipes:deepslate_iron_ore_1",
+            "more_recipes:deepslate_iron_ore_2",
+            "more_recipes:deepslate_lapis_ore",
+            "more_recipes:deepslate_redstone_ore",
+            "more_recipes:diamond_ore",
+            "more_recipes:emerald_ore",
+            "more_recipes:gold_ore_1",
+            "more_recipes:gold_ore_2",
+            "more_recipes:iron_ore_1",
+            "more_recipes:iron_ore_2",
+            "more_recipes:lapis_ore",
+            "more_recipes:nether_gold_ore_1",
+            "more_recipes:nether_gold_ore_2",
+            "more_recipes:nether_quartz_ore",
+            "more_recipes:redstone_ore"
+        ]
+    },
+    "criteria":     {
+        "has_stone": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:stone"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_stone"
+        ]
+    ]
+}

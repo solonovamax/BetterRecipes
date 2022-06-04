@@ -1,0 +1,27 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:soul_soil"
+        ]
+    },
+    "criteria":     {
+        "has_soul_sand": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:soul_sand"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_soul_sand"
+        ]
+    ]
+}

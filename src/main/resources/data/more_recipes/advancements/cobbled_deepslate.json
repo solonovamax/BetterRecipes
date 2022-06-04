@@ -1,0 +1,27 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:stonecutter_cobbled_deepslate"
+        ]
+    },
+    "criteria":     {
+        "has_cobbled_deepslate": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:cobbled_deepslate"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_cobbled_deepslate"
+        ]
+    ]
+}

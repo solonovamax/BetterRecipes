@@ -1,0 +1,28 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:saddle"
+        ]
+    },
+    "criteria":     {
+        "has_iron_leather": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:iron_ingot",
+                            "minecraft:leather"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_iron_leather"
+        ]
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:smelt_raw_copper_block",
+            "more_recipes:smoke_raw_copper_block",
+            "more_recipes:campfire_raw_copper_block"
+        ]
+    },
+    "criteria":     {
+        "has_rotten_flesh": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:rotten_flesh"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_rotten_flesh"
+        ]
+    ]
+}

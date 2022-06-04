@@ -1,0 +1,27 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:red_mushroom_block"
+        ]
+    },
+    "criteria":     {
+        "has_mushrooms": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:red_mushroom"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_mushrooms"
+        ]
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:campfire_chorus_fruit"
+        ]
+    },
+    "criteria":     {
+        "has_chorus": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:chorus_fruit"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_chorus"
+        ]
+    ]
+}

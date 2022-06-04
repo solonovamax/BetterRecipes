@@ -1,0 +1,28 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:blast_raw_iron_block",
+            "more_recipes:smelt_raw_iron_block"
+        ]
+    },
+    "criteria":     {
+        "has_raw_iron": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": [
+                            "minecraft:raw_iron_block"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_raw_iron"
+        ]
+    ]
+}

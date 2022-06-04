@@ -1,0 +1,20 @@
+{
+    "type":    "minecraft:crafting_shaped",
+    "pattern": [
+        "OXO",
+        "XOX",
+        "OXO"
+    ],
+    "key":     {
+        "O": {
+            "item": "minecraft:netherrack"
+        },
+        "X": {
+            "item": "minecraft:quartz"
+        }
+    },
+    "result":  {
+        "item":  "minecraft:nether_quartz_ore",
+        "count": 1
+    }
+}

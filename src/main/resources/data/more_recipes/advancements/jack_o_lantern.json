@@ -1,0 +1,25 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:jack_o_lantern"
+        ]
+    },
+    "criteria":     {
+        "has_candle": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "minecraft:candles"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_candle"
+        ]
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "fast_crafting:bowl_1",
+            "fast_crafting:bowl_2",
+            "fast_crafting:chest",
+            "fast_crafting:stick",
+            "fast_crafting:trapped_chest",
+            "fast_crafting:crafting_table"
+        ]
+    },
+    "criteria":     {
+        "has_log": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "minecraft:logs"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_log"
+        ]
+    ]
+}

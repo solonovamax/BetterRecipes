@@ -1,0 +1,27 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:stonecutter_cobblestone"
+        ]
+    },
+    "criteria":     {
+        "has_cobblestone": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:cobblestone"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_cobblestone"
+        ]
+    ]
+}

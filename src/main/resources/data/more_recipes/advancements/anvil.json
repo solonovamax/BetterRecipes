@@ -1,0 +1,29 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "more_recipes:repair_chipped_anvil",
+            "more_recipes:repair_damaged_anvil_1",
+            "more_recipes:repair_damaged_anvil_2"
+        ]
+    },
+    "criteria":     {
+        "has_anvil": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "items": [
+                            "minecraft:anvil"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_anvil"
+        ]
+    ]
+}

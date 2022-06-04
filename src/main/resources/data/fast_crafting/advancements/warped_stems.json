@@ -1,0 +1,28 @@
+{
+    "parent":       "minecraft:recipes/root",
+    "rewards":      {
+        "recipes": [
+            "fast_crafting:warped_door",
+            "fast_crafting:warped_pressure_plate",
+            "fast_crafting:warped_stairs",
+            "fast_crafting:warped_trapdoor"
+        ]
+    },
+    "criteria":     {
+        "has_stem": {
+            "trigger":    "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "minecraft:warped_stems"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_stem"
+        ]
+    ]
+}
