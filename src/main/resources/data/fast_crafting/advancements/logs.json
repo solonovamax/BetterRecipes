@@ -6,8 +6,7 @@
             "fast_crafting:bowl_2",
             "fast_crafting:chest",
             "fast_crafting:stick",
-            "fast_crafting:trapped_chest",
-            "fast_crafting:crafting_table"
+            "fast_crafting:trapped_chest"
         ]
     },
     "criteria":     {
