@@ -22,7 +22,7 @@
     },
     "requirements": [
         [
-            "has_sten"
+            "has_stem"
         ]
     ]
 }

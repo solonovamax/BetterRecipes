@@ -1,5 +1,6 @@
 {
     "type":        "minecraft:crafting_shapeless",
+    "group":       "diamond_ores",
     "ingredients": [
         {
             "item": "minecraft:diamond"

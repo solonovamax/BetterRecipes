@@ -2,7 +2,7 @@
     "parent":       "minecraft:recipes/root",
     "rewards":      {
         "recipes": [
-            "more_recipes:lightning_rod"
+            "fast_crafting:lightning_rod"
         ]
     },
     "criteria":     {

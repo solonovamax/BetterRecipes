@@ -1,0 +1,15 @@
+{
+    "type":    "minecraft:crafting_shaped",
+    "group":   "iron_pressure_plates",
+    "pattern": [
+        "##"
+    ],
+    "key":     {
+        "#": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result":  {
+        "item": "minecraft:light_weighted_pressure_plate"
+    }
+}

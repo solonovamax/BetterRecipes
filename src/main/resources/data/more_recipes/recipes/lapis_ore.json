@@ -1,5 +1,6 @@
 {
     "type":        "minecraft:crafting_shapeless",
+    "group":       "lapis_ores",
     "ingredients": [
         {
             "item": "minecraft:lapis_block"
