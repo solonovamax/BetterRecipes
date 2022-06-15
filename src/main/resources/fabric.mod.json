@@ -7,10 +7,10 @@
     "authors":       [
         "solonovamax"
     ],
-    "contact":       {
-        "homepage": "",
-        "sources":  "",
-        "issues":   ""
+    "contact": {
+        "homepage": "https://github.com/solonovamax/BetterRecipes/",
+        "sources":  "https://github.com/solonovamax/BetterRecipes/",
+        "issues":   "https://github.com/solonovamax/BetterRecipes/issues"
     },
     "license":       "MIT",
     "environment":   "*",
