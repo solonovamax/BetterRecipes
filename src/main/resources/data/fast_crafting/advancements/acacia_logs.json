@@ -4,6 +4,7 @@
         "recipes": [
             "fast_crafting:acacia_door",
             "fast_crafting:acacia_pressure_plate",
+            "fast_crafting:acacia_slab",
             "fast_crafting:acacia_stairs",
             "fast_crafting:acacia_trapdoor"
         ]

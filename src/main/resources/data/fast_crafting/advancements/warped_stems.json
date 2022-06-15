@@ -4,6 +4,7 @@
         "recipes": [
             "fast_crafting:warped_door",
             "fast_crafting:warped_pressure_plate",
+            "fast_crafting:warped_slab",
             "fast_crafting:warped_stairs",
             "fast_crafting:warped_trapdoor"
         ]

@@ -4,6 +4,7 @@
         "recipes": [
             "fast_crafting:oak_door",
             "fast_crafting:oak_pressure_plate",
+            "fast_crafting:oak_slab",
             "fast_crafting:oak_stairs",
             "fast_crafting:oak_trapdoor"
         ]

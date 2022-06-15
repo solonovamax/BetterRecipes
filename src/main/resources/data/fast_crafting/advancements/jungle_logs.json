@@ -4,6 +4,7 @@
         "recipes": [
             "fast_crafting:jungle_door",
             "fast_crafting:jungle_pressure_plate",
+            "fast_crafting:jungle_slab",
             "fast_crafting:jungle_stairs",
             "fast_crafting:jungle_trapdoor"
         ]

@@ -4,6 +4,7 @@
         "recipes": [
             "fast_crafting:birch_door",
             "fast_crafting:birch_pressure_plate",
+            "fast_crafting:birch_slab",
             "fast_crafting:birch_stairs",
             "fast_crafting:birch_trapdoor"
         ]
