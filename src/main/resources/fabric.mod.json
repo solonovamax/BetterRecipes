@@ -17,10 +17,10 @@
     "entrypoints":   {
         "main": [ ]
     },
-    "depends":       {
+    "depends": {
         "fabricloader":           ">=0.7.1",
         "fabric":                 "*",
         "fabric-language-kotlin": ">=1.7.4+kotlin.1.6.21",
-        "minecraft":              "^1.18"
+        "minecraft": ">=1.18"
     }
 }
