@@ -5,15 +5,15 @@ Adds a bunch of recipes to minecraft
 <details>
 <summary>Recipes</summary>
 
-![](assets/anvil.gif "Anvil")
+![](assets/anvil.gif)
 
 ---
 
-![](assets/bell.png "Bell")
+![](assets/bell.png)
 
 ---
 
-![](assets/bowl.gif "Bowl")
+![](assets/bowl.gif)
 
 ---
 
