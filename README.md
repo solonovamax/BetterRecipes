@@ -168,5 +168,3 @@ Adds a bunch of recipes to minecraft
 ![](assets/trapped_chest.gif)
 
 </details>
-
-nj
