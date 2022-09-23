@@ -5,6 +5,7 @@ plugins {
     kotlin("jvm") version "1.7.10"
     id("org.quiltmc.loom") version "0.12.40"
     id("org.jetbrains.dokka") version "1.7.10"
+    id("com.modrinth.minotaur") version "2.4.4"
 }
 
 group = "gay.solonovamax"
@@ -87,11 +88,29 @@ tasks {
                             it.group == "net.fabricmc" && it.name == "sponge-mixin"
                         }.find { true } // only find one
                         vmArg("-javaagent:$mixinJarFile")
-                        
+    
                         ideConfigGenerated(true)
                     }
                 }
             }
         }
     }
+}
+
+modrinth {
+    val modrinthToken: String by project
+    token.value(modrinthToken)
+    projectId.set("better-recipes")
+    versionNumber.set(project.version.toString())
+    versionType.set("release")
+    uploadFile.set(tasks.remapJar.get())
+    gameVersions.set(listOf("1.19", "1.19.1", "1.19.2"))
+    loaders.set(listOf("fabric", "quilt"))
+    
+    dependencies {
+        required.project("fabric-api")
+        required.project("qsl")
+    }
+    
+    syncBodyFrom.set(rootProject.file("README.md").toRelativeString(rootDir))
 }
