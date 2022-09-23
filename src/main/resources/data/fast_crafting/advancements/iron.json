@@ -7,12 +7,15 @@
             "fast_crafting:chest_minecart_1",
             "fast_crafting:chest_minecart_2",
             "fast_crafting:chest_minecart_3",
+            "fast_crafting:chest_minecart_4",
             "fast_crafting:hopper",
-            "fast_crafting:hopper_minecart",
+            "fast_crafting:hopper_minecart_1",
+            "fast_crafting:hopper_minecart_2",
             "fast_crafting:iron_door",
             "fast_crafting:iron_trapdoor",
             "fast_crafting:iron_pressure_plate",
-            "fast_crafting:furnace_minecart",
+            "fast_crafting:furnace_minecart_1",
+            "fast_crafting:furnace_minecart_2",
             "fast_crafting:tnt_minecart"
         ]
     },
@@ -23,7 +26,8 @@
                 "items": [
                     {
                         "items": [
-                            "minecraft:iron_ingot"
+                            "minecraft:iron_ingot",
+                            "minecraft:iron_block"
                         ]
                     }
                 ]

@@ -1,0 +1,21 @@
+{
+    "type":    "minecraft:crafting_shaped",
+    "group":   "glistering_melon_slices",
+    "key":     {
+        "G": {
+            "item": "minecraft:gold_ingot"
+        },
+        "M": {
+            "item": "minecraft:melon"
+        }
+    },
+    "pattern": [
+        "GGG",
+        "GMG",
+        "GGG"
+    ],
+    "result":  {
+        "count": 9,
+        "item":  "minecraft:glistering_melon_slice"
+    }
+}

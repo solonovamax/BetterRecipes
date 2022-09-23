@@ -1,0 +1,21 @@
+{
+    "type":    "minecraft:crafting_shaped",
+    "group":   "chest_minecarts",
+    "pattern": [
+        "ppp",
+        "pMp",
+        "ppp"
+    ],
+    "key":     {
+        "M": {
+            "item": "minecraft:minecart"
+        },
+        "p": {
+            "tag": "minecraft:planks"
+        }
+    },
+    "result":  {
+        "item":  "minecraft:chest_minecart",
+        "count": 1
+    }
+}

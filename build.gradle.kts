@@ -2,22 +2,22 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `maven-publish`
-    kotlin("jvm") version "1.6.21"
-    id("fabric-loom") version "0.12-SNAPSHOT"
-    id("org.jetbrains.dokka") version "1.6.20"
+    kotlin("jvm") version "1.7.10"
+    id("org.quiltmc.loom") version "0.12.40"
+    id("org.jetbrains.dokka") version "1.7.10"
 }
 
 group = "gay.solonovamax"
-version = "1.2.1"
+version = "1.2.2"
 
 repositories {
     mavenCentral()
-    maven {
-        name = "FabricMC"
-        url = uri("https://maven.fabricmc.net")
+    
+    maven("https://maven.quiltmc.org/repository/release") {
+        name = "Quilt"
     }
-    maven("https://oss.sonatype.org/content/repositories/snapshots/") {
-        mavenContent { snapshotsOnly() }
+    maven("https://maven.fabricmc.net") {
+        name = "FabricMC"
     }
 }
 
@@ -28,18 +28,25 @@ java {
 
 dependencies {
     val minecraftVersion by properties
-    val yarnMappings by properties
+    val quiltMappingsBuild by properties
     val loaderVersion by properties
-    val fabricVersion by properties
+    val quiltedFabricApiVersion by properties
     val fabricKotlinVersion by properties
     
     minecraft("com.mojang:minecraft:$minecraftVersion")
-    mappings("net.fabricmc:yarn:$yarnMappings:v2")
+    @Suppress("UnstableApiUsage")
+    mappings(loom.layered {
+        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:$minecraftVersion+build.$quiltMappingsBuild:v2"))
+    })
     
-    modImplementation("net.fabricmc:fabric-loader:$loaderVersion")
+    modImplementation("org.quiltmc:quilt-loader:$loaderVersion")
     
-    modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
+    // modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
+    modImplementation("org.quiltmc.quilted-fabric-api:quilted-fabric-api:$quiltedFabricApiVersion") {
+        exclude(group = "org.quiltmc.quilted-fabric-api", module = "fabric-gametest-api-v1")
+    }
     
+    // modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
     modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
 }
 

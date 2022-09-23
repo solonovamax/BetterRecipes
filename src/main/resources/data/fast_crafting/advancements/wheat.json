@@ -2,17 +2,18 @@
     "parent":       "minecraft:recipes/root",
     "rewards":      {
         "recipes": [
-            "fast_crafting:lightning_rod"
+            "fast_crafting:bread"
         ]
     },
     "criteria":     {
-        "has_copper": {
+        "has_wheat_hay": {
             "trigger":    "minecraft:inventory_changed",
             "conditions": {
                 "items": [
                     {
                         "items": [
-                            "minecraft:copper_block"
+                            "minecraft:wheat",
+                            "minecraft:hay_block"
                         ]
                     }
                 ]
@@ -21,7 +22,7 @@
     },
     "requirements": [
         [
-            "has_copper"
+            "has_wheat_hay"
         ]
     ]
 }

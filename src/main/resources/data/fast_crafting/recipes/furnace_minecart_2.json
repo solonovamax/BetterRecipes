@@ -1,0 +1,21 @@
+{
+    "type":    "minecraft:crafting_shaped",
+    "group":   "furnace_minecarts",
+    "pattern": [
+        "ccc",
+        "cMc",
+        "ccc"
+    ],
+    "key":     {
+        "M": {
+            "item": "minecraft:minecart"
+        },
+        "c": {
+            "item": "minecraft:cobblestone"
+        }
+    },
+    "result":  {
+        "item":  "minecraft:furnace_minecart",
+        "count": 1
+    }
+}

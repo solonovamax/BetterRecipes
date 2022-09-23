@@ -2,11 +2,14 @@ rootProject.name = "BetterRecipes"
 
 pluginManagement {
     repositories {
-        maven {
-            name = "FabricMC"
-            url = uri("https://maven.fabricmc.net")
-        }
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
+    
+        maven("https://maven.quiltmc.org/repository/release") {
+            name = "Quilt"
+        }
+        maven("https://maven.fabricmc.net") {
+            name = "FabricMC"
+        }
     }
 }
