@@ -1,116 +1,142 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import ca.solostudios.nyx.plugin.minecraft.NyxMinotaurExtension.VersionType
+import ca.solostudios.nyx.plugin.minecraft.loom.FabricModJson.Environment
+import ca.solostudios.nyx.util.fabric
+import ca.solostudios.nyx.util.soloStudios
+import net.fabricmc.loom.task.RunGameTask
 
 plugins {
-    `maven-publish`
-    kotlin("jvm") version "1.7.10"
-    id("org.quiltmc.loom") version "0.12.40"
-    id("org.jetbrains.dokka") version "1.7.10"
-    id("com.modrinth.minotaur") version "2.4.4"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.fabric.loom)
+    alias(libs.plugins.axion.release)
+    alias(libs.plugins.minotaur)
+    alias(libs.plugins.nyx)
 }
 
-group = "gay.solonovamax"
-version = "1.3.0"
+nyx {
+    compile {
+        // javadocJar = true
+        sourcesJar = true
 
-repositories {
-    mavenCentral()
-    
-    maven("https://maven.quiltmc.org/repository/release") {
-        name = "Quilt"
+        allWarnings = true
+        // warningsAsErrors = true
+        distributeLicense = true
+        buildDependsOnJar = true
+        jvmTarget = 17
+        reproducibleBuilds = true
     }
-    maven("https://maven.fabricmc.net") {
-        name = "FabricMC"
-    }
-}
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
+    info {
+        name = "Better Recipes"
+        group = "gay.solonovamax"
+        module = "better-recipes"
+        version = scmVersion.version
+        description = """
+            Adds a bunch of useful recipes to minecraft
+        """.trimIndent()
 
-dependencies {
-    val minecraftVersion by properties
-    val quiltMappingsBuild by properties
-    val loaderVersion by properties
-    val quiltedFabricApiVersion by properties
-    val fabricKotlinVersion by properties
-    
-    minecraft("com.mojang:minecraft:$minecraftVersion")
-    @Suppress("UnstableApiUsage")
-    mappings(loom.layered {
-        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:$minecraftVersion+build.$quiltMappingsBuild:v2"))
-    })
-    
-    modImplementation("org.quiltmc:quilt-loader:$loaderVersion")
-    
-    // modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricVersion")
-    modImplementation("org.quiltmc.quilted-fabric-api:quilted-fabric-api:$quiltedFabricApiVersion") {
-        exclude(group = "org.quiltmc.quilted-fabric-api", module = "fabric-gametest-api-v1")
-    }
-    
-    // modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
-    modImplementation("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")
-}
-
-tasks {
-    
-    processResources {
-        inputs.properties("version" to project.version)
-        filesMatching("fabric.mod.json") {
-            expand("version" to project.version)
+        developer {
+            id = "solonovamax"
+            name = "solonovamax"
+            email = "solonovamax@12oclockpoint.com"
+            url = "https://solonovamax.gay"
         }
+
+        repository.fromGithub("solonovamax", "BetterRecipes")
+        license.useMIT()
     }
-    
-    jar {
-        from("LICENSE")
-    }
-    
-    // ensure that the encoding is set to UTF-8, no matter what the system default is
-    // this fixes some edge cases with special characters not displaying correctly
-    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
-    withType(JavaCompile::class) {
-        options.encoding = "UTF-8"
-    }
-    
-    withType(KotlinCompile::class) {
-        kotlinOptions {
-            jvmTarget = "17"
+
+    minecraft {
+        configureDataGeneration {
+            createSourceSet = true
+            // strictValidation = true
+            modId = "better-recipes-datagen"
         }
-    }
-    
-    configureLaunch {
-        doFirst {
-            loom {
-                runs {
-                    configureEach {
-                        property("fabric.development=true")
-                        property("mixin.hotSwap")
-                        val mixinJarFile = configurations.compileClasspath.get().files {
-                            it.group == "net.fabricmc" && it.name == "sponge-mixin"
-                        }.find { true } // only find one
-                        vmArg("-javaagent:$mixinJarFile")
-    
-                        ideConfigGenerated(true)
-                    }
-                }
+
+        // accessWidener("beaconoverhaul")
+
+        additionalJvmProperties.putAll(
+            mapOf(
+                "fabric-tag-conventions-v2.missingTagTranslationWarning" to "FAIL",
+                "fabric-tag-conventions-v1.legacyTagWarning" to "FAIL"
+            )
+        )
+
+        mixin {
+            hotswap = true
+            verbose = true
+            export = true
+
+            // mixinRefmapName("beaconoverhaul")
+        }
+
+        fabricModJson {
+            author("solonovamax", mapOf("homepage" to "https://solonovamax.gay"))
+            contact {
+                homepage = "https://github.com/solonovamax/BetterRecipes/"
+                environment = Environment.UNIVERSAL
+            }
+            depends("minecraft", ">=1.21")
+        }
+
+        minotaur {
+            versionType = if (isSnapshot) VersionType.ALPHA else VersionType.BETA
+            projectId = "better-recipes"
+            detectLoaders = true
+            gameVersions = listOf("1.21")
+            dependencies {
+                required("fabric-api")
+                required("fabric-language-kotlin")
+
+                // optional("modmenu")
+
+                // optional("emi")
+                // optional("rei")
+                // optional("jei")
             }
         }
     }
 }
 
-modrinth {
-    val modrinthToken: String by project
-    token.value(modrinthToken)
-    projectId.set("better-recipes")
-    versionNumber.set(project.version.toString())
-    versionType.set("release")
-    uploadFile.set(tasks.remapJar.get())
-    gameVersions.set(listOf("1.19", "1.19.1", "1.19.2"))
-    loaders.set(listOf("fabric", "quilt"))
-    
-    dependencies {
-        required.project("fabric-api")
-        required.project("qsl")
-    }
-    
-    syncBodyFrom.set(rootProject.file("README.md").toRelativeString(rootDir))
+repositories {
+    soloStudios()
+    fabric()
+    mavenCentral()
 }
+
+dependencies {
+    minecraft(libs.minecraft)
+
+    mappings(loom.layered {
+        mappings(variantOf(libs.yarn.mappings) { classifier("v2") })
+    })
+
+    modImplementation(libs.fabric.loader)
+
+    modImplementation(libs.fabric.api)
+    modImplementation(libs.fabric.language.kotlin)
+
+    annotationProcessor(libs.sponge.mixin)
+    implementation(libs.sponge.mixin)
+
+    annotationProcessor(libs.mixinextras)
+    implementation(libs.mixinextras)
+}
+
+tasks {
+    val runDatagen by named<RunGameTask>("runDatagen")
+
+    withType<RunGameTask>().matching { it != runDatagen }.configureEach {
+        dependsOn(runDatagen)
+    }
+
+    withType<Jar>().configureEach {
+        dependsOn(runDatagen)
+    }
+}
+
+// modrinth {
+//     syncBodyFrom.set(rootProject.file("README.md").toRelativeString(rootDir))
+// }
+
+val Project.isSnapshot: Boolean
+    get() = version.toString().endsWith("-SNAPSHOT")

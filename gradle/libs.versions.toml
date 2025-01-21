@@ -1,0 +1,42 @@
+[versions]
+kotlin = "2.1.0"
+nyx = "0.3.0-SNAPSHOT"
+
+axion-release = "1.18.16"
+
+minotaur = "2.8.7"
+
+loom = "1.9.2"
+minecraft = "1.21.4"
+fabric-loader = "0.16.9"
+fabric-yarn = "1.21.4+build.2"
+fabric-api = "0.115.0+1.21.4"
+fabric-language-kotlin = "1.13.0+kotlin.2.1.0"
+
+mixin = "0.15.4+mixin.0.8.7"
+mixinextras = "0.4.1"
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+nyx = { id = "ca.solo-studios.nyx", version.ref = "nyx" }
+
+axion-release = { id = "pl.allegro.tech.build.axion-release", version.ref = "axion-release" }
+
+fabric-loom = { id = "fabric-loom", version.ref = "loom" }
+
+minotaur = { id = "com.modrinth.minotaur", version.ref = "minotaur" }
+
+[libraries]
+
+minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
+
+yarn-mappings = { group = "net.fabricmc", name = "yarn", version.ref = "fabric-yarn" }
+
+fabric-loader = { group = "net.fabricmc", name = "fabric-loader", version.ref = "fabric-loader" }
+fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.ref = "fabric-api" }
+
+fabric-language-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "fabric-language-kotlin" }
+
+sponge-mixin = { group = "net.fabricmc", name = "sponge-mixin", version.ref = "mixin" }
+mixinextras = { group = "io.github.llamalad7", name = "mixinextras-fabric", version.ref = "mixinextras" }
