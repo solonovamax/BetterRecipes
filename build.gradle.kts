@@ -3,6 +3,7 @@ import ca.solostudios.nyx.plugin.minecraft.loom.FabricModJson.Environment
 import ca.solostudios.nyx.util.fabric
 import ca.solostudios.nyx.util.soloStudios
 import net.fabricmc.loom.task.RunGameTask
+import org.gradle.jvm.tasks.Jar
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -23,6 +24,11 @@ nyx {
         buildDependsOnJar = true
         jvmTarget = 17
         reproducibleBuilds = true
+
+        kotlin {
+            compilerArgs.add("-Xcontext-receivers")
+            optIn.add("kotlinx.serialization.ExperimentalSerializationApi")
+        }
     }
 
     info {
@@ -49,7 +55,7 @@ nyx {
         configureDataGeneration {
             createSourceSet = true
             // strictValidation = true
-            modId = "better-recipes-datagen"
+            modId = "better-recipes"
         }
 
         // accessWidener("beaconoverhaul")
@@ -63,7 +69,7 @@ nyx {
 
         mixin {
             hotswap = true
-            verbose = true
+            verbose = false
             export = true
 
             // mixinRefmapName("beaconoverhaul")
@@ -76,6 +82,12 @@ nyx {
                 environment = Environment.UNIVERSAL
             }
             depends("minecraft", ">=1.21")
+
+            entrypoints {
+                entry("fabric-datagen") {
+                    entrypoint("gay.solonovamax.betterrecipes.datagen.BetterResourcesDataGenerator", "kotlin")
+                }
+            }
         }
 
         minotaur {
@@ -84,8 +96,8 @@ nyx {
             detectLoaders = true
             gameVersions = listOf("1.21")
             dependencies {
-                required("fabric-api")
-                required("fabric-language-kotlin")
+                // required("fabric-api")
+                // required("fabric-language-kotlin")
 
                 // optional("modmenu")
 
@@ -106,6 +118,7 @@ repositories {
 dependencies {
     minecraft(libs.minecraft)
 
+    @Suppress("UnstableApiUsage")
     mappings(loom.layered {
         mappings(variantOf(libs.yarn.mappings) { classifier("v2") })
     })
@@ -115,11 +128,14 @@ dependencies {
     modImplementation(libs.fabric.api)
     modImplementation(libs.fabric.language.kotlin)
 
-    annotationProcessor(libs.sponge.mixin)
-    implementation(libs.sponge.mixin)
+    // annotationProcessor(libs.sponge.mixin)
+    // implementation(libs.sponge.mixin)
+    //
+    // annotationProcessor(libs.mixinextras)
+    // implementation(libs.mixinextras)
 
-    annotationProcessor(libs.mixinextras)
-    implementation(libs.mixinextras)
+    // only used for datagen
+    implementation(libs.slf4k)
 }
 
 tasks {

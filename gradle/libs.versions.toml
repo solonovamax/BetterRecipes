@@ -16,6 +16,8 @@ fabric-language-kotlin = "1.13.0+kotlin.2.1.0"
 mixin = "0.15.4+mixin.0.8.7"
 mixinextras = "0.4.1"
 
+slf4k = "0.5.3"
+
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 
@@ -40,3 +42,5 @@ fabric-language-kotlin = { group = "net.fabricmc", name = "fabric-language-kotli
 
 sponge-mixin = { group = "net.fabricmc", name = "sponge-mixin", version.ref = "mixin" }
 mixinextras = { group = "io.github.llamalad7", name = "mixinextras-fabric", version.ref = "mixinextras" }
+
+slf4k = { group = "ca.solo-studios", name = "slf4k", version.ref = "slf4k" }

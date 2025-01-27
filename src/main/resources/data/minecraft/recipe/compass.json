@@ -1,0 +1,18 @@
+{
+    "type":     "minecraft:crafting_shaped",
+    "category": "equipment",
+    "group":    "compass",
+    "key":      {
+        "#": "minecraft:iron_ingot",
+        "X": "minecraft:redstone"
+    },
+    "pattern":  [
+        " # ",
+        "#X#",
+        " # "
+    ],
+    "result":   {
+        "count": 1,
+        "id":    "minecraft:compass"
+    }
+}

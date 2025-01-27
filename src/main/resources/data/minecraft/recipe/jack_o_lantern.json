@@ -1,0 +1,17 @@
+{
+    "type":     "minecraft:crafting_shaped",
+    "category": "building",
+    "group":    "jack_o_lantern",
+    "key":      {
+        "A": "minecraft:carved_pumpkin",
+        "B": "minecraft:torch"
+    },
+    "pattern":  [
+        "A",
+        "B"
+    ],
+    "result":   {
+        "count": 1,
+        "id":    "minecraft:jack_o_lantern"
+    }
+}
