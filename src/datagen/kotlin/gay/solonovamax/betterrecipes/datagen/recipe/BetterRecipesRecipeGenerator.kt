@@ -242,14 +242,14 @@ class BetterRecipesRecipeGenerator(
             .input(Blocks.IRON_BLOCK)
             .group("anvil")
             .criterion(Blocks.IRON_BLOCK)
-            .offerRecipe("_from_chipped_anvil")
+            .offerRecipe(suffix = "from_chipped_anvil")
 
         createShapeless(RecipeCategory.MISC, Blocks.CHIPPED_ANVIL)
             .input(Blocks.DAMAGED_ANVIL)
             .input(Blocks.IRON_BLOCK)
             .group("anvil")
             .criterion(Blocks.IRON_BLOCK)
-            .offerRecipe(suffix = "_from_damaged_anvil")
+            .offerRecipe(suffix = "from_damaged_anvil")
 
         createShapeless(RecipeCategory.MISC, Blocks.ANVIL)
             .input(Blocks.DAMAGED_ANVIL)
@@ -257,7 +257,7 @@ class BetterRecipesRecipeGenerator(
             .input(Blocks.IRON_BLOCK)
             .group("anvil")
             .criterion(Blocks.IRON_BLOCK)
-            .offerRecipe("_from_damaged_anvil")
+            .offerRecipe(suffix = "from_damaged_anvil")
         // endregion
     }
 
@@ -659,7 +659,7 @@ class BetterRecipesRecipeGenerator(
         createShapeless(RecipeCategory.MISC, Items.STRING, 4)
             .input(ItemTags.WOOL)
             .criterion(ItemTags.WOOL)
-            .offerRecipe("from_wool")
+            .offerRecipe(suffix = "from_wool")
 
         createShapeless(RecipeCategory.MISC, Items.QUARTZ, 4)
             .input(Blocks.QUARTZ_BLOCK)
@@ -871,7 +871,7 @@ class BetterRecipesRecipeGenerator(
         CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItem(input), category, output, experience, cookingTime)
             .group(group)
             .criterion(input)
-            .offerRecipe("${output.smeltingItemPath}_${input.itemPath}")
+            .offerRecipe(suffix = "${output.smeltingItemPath}_${input.itemPath}")
     }
 
     private fun offerBlasting(
@@ -885,7 +885,7 @@ class BetterRecipesRecipeGenerator(
         CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItem(input), category, output, experience, cookingTime)
             .group(group)
             .criterion(input)
-            .offerRecipe("${output.blastingItemPath}_${input.itemPath}")
+            .offerRecipe(suffix = "${output.blastingItemPath}_${input.itemPath}")
     }
 
     private fun offerSmoking(
@@ -899,7 +899,7 @@ class BetterRecipesRecipeGenerator(
         CookingRecipeJsonBuilder.createSmoking(Ingredient.ofItem(input), category, output, experience, cookingTime)
             .group(group)
             .criterion(input)
-            .offerRecipe("${output.smokingItemPath}_${input.itemPath}")
+            .offerRecipe(suffix = "${output.smokingItemPath}_${input.itemPath}")
     }
 
     private fun offerCampfireCooking(
@@ -913,7 +913,7 @@ class BetterRecipesRecipeGenerator(
         CookingRecipeJsonBuilder.createCampfireCooking(Ingredient.ofItem(input), category, output, experience, cookingTime)
             .group(group)
             .criterion(input)
-            .offerRecipe("${output.campfireCookingItemPath}_${input.itemPath}")
+            .offerRecipe(suffix = "${output.campfireCookingItemPath}_${input.itemPath}")
     }
 
     private fun offerReversible2x2CompactingRecipe(
