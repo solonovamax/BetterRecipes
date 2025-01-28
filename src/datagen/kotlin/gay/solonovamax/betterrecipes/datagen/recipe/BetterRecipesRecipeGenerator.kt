@@ -452,6 +452,15 @@ class BetterRecipesRecipeGenerator(
             200,
             "rotten_flesh",
         )
+
+        createShaped(RecipeCategory.FOOD, Items.ENCHANTED_GOLDEN_APPLE)
+            .input('#', Blocks.GOLD_BLOCK)
+            .input('X', Items.APPLE)
+            .pattern("###")
+            .pattern("#X#")
+            .pattern("###")
+            .criterion(Blocks.GOLD_BLOCK)
+            .offerRecipe()
     }
 
     fun generateMiscRecipes() {
