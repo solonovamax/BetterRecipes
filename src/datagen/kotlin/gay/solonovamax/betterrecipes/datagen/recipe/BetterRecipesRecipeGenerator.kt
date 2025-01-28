@@ -374,8 +374,29 @@ class BetterRecipesRecipeGenerator(
 
         offerBulk2x2CompactingRecipe(RecipeCategory.REDSTONE, Items.IRON_BLOCK, Blocks.IRON_TRAPDOOR, "iron_trapdoor", 9)
 
-        offerBulkDoorRecipe(Items.COPPER_BLOCK, Blocks.COPPER_DOOR, "copper_door", 9)
-        offerBulkTrapdoorRecipe(Items.COPPER_INGOT, Blocks.COPPER_TRAPDOOR, "copper_trapdoor", 9)
+        offerBulkDoorRecipe(Items.COPPER_BLOCK, Blocks.COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.COPPER_BLOCK, Blocks.COPPER_TRAPDOOR, null, 9)
+
+        offerBulkDoorRecipe(Items.WAXED_COPPER_BLOCK, Blocks.WAXED_COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_COPPER_BLOCK, Blocks.WAXED_COPPER_TRAPDOOR, null, 9)
+
+        offerBulkDoorRecipe(Items.EXPOSED_COPPER, Blocks.EXPOSED_COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.EXPOSED_COPPER, Blocks.EXPOSED_COPPER_TRAPDOOR, null, 9)
+
+        offerBulkDoorRecipe(Items.WAXED_EXPOSED_COPPER, Blocks.WAXED_EXPOSED_COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_EXPOSED_COPPER, Blocks.WAXED_EXPOSED_COPPER_TRAPDOOR, null, 9)
+
+        offerBulkDoorRecipe(Items.WEATHERED_COPPER, Blocks.WEATHERED_COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.WEATHERED_COPPER, Blocks.WEATHERED_COPPER_TRAPDOOR, null, 9)
+
+        offerBulkDoorRecipe(Items.WAXED_WEATHERED_COPPER, Blocks.WAXED_WEATHERED_COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_WEATHERED_COPPER, Blocks.WAXED_WEATHERED_COPPER_TRAPDOOR, null, 9)
+
+        offerBulkDoorRecipe(Items.OXIDIZED_COPPER, Blocks.OXIDIZED_COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.OXIDIZED_COPPER, Blocks.OXIDIZED_COPPER_TRAPDOOR, null, 9)
+
+        offerBulkDoorRecipe(Items.WAXED_OXIDIZED_COPPER, Blocks.WAXED_OXIDIZED_COPPER_DOOR, null, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_OXIDIZED_COPPER, Blocks.WAXED_OXIDIZED_COPPER_TRAPDOOR, null, 9)
 
         createShaped(RecipeCategory.REDSTONE, Blocks.LIGHTNING_ROD)
             .input('#', Blocks.COPPER_BLOCK)
@@ -736,7 +757,7 @@ class BetterRecipesRecipeGenerator(
         }
     }
 
-    private fun offerBulkDoorRecipe(input: ItemConvertible, output: ItemConvertible, group: String, factor: Int) {
+    private fun offerBulkDoorRecipe(input: ItemConvertible, output: ItemConvertible, group: String?, factor: Int) {
         createBulkDoorRecipe(input, output, factor)
             .group(group)
             .criterion(input)
@@ -794,11 +815,31 @@ class BetterRecipesRecipeGenerator(
             .pattern("###")
     }
 
-    private fun offerBulkTrapdoorRecipe(input: ItemConvertible, output: ItemConvertible, group: String, factor: Int) {
+    private fun offerBulkTrapdoorRecipe(input: ItemConvertible, output: ItemConvertible, group: String?, factor: Int) {
         createBulkTrapdoorRecipe(input, output, factor)
             .group(group)
             .criterion(input)
             .offerRecipe()
+    }
+
+    private fun offerBulkGrateRecipe(input: ItemConvertible, output: ItemConvertible, group: String, factor: Int) {
+        createBulkGrateRecipe(input, output, group, factor)
+            .criterion(input)
+            .offerRecipe()
+    }
+
+    private fun createBulkGrateRecipe(
+        input: ItemConvertible,
+        output: ItemConvertible,
+        group: String,
+        factor: Int,
+    ): ShapedRecipeJsonBuilder {
+        return this.createShaped(RecipeCategory.BUILDING_BLOCKS, output, 4 * factor)
+            .input('M', input)
+            .pattern(" M ")
+            .pattern("M M")
+            .pattern(" M ")
+            .group(group)
     }
 
     private fun createBulkTrapdoorRecipe(input: ItemConvertible, output: ItemConvertible, factor: Int): CraftingRecipeJsonBuilder {
