@@ -13,6 +13,8 @@ fabric-yarn = "1.21.4+build.2"
 fabric-api = "0.115.0+1.21.4"
 fabric-language-kotlin = "1.13.0+kotlin.2.1.0"
 
+silk = "1.11.0-all-prs-SNAPSHOT"
+
 mixin = "0.15.4+mixin.0.8.7"
 mixinextras = "0.4.1"
 
@@ -44,3 +46,20 @@ sponge-mixin = { group = "net.fabricmc", name = "sponge-mixin", version.ref = "m
 mixinextras = { group = "io.github.llamalad7", name = "mixinextras-fabric", version.ref = "mixinextras" }
 
 slf4k = { group = "ca.solo-studios", name = "slf4k", version.ref = "slf4k" }
+
+silk-core = { group = "gay.solonovamax", name = "silk-core", version.ref = "silk" }
+silk-game = { group = "gay.solonovamax", name = "silk-game", version.ref = "silk" }
+silk-igui = { group = "gay.solonovamax", name = "silk-igui", version.ref = "silk" }
+silk-nbt = { group = "gay.solonovamax", name = "silk-nbt", version.ref = "silk" }
+silk-network = { group = "gay.solonovamax", name = "silk-network", version.ref = "silk" }
+silk-persistence = { group = "gay.solonovamax", name = "silk-persistence", version.ref = "silk" }
+
+[bundles]
+silk = [
+    "silk-core",
+    "silk-game",
+    "silk-igui",
+    "silk-nbt",
+    "silk-network",
+    "silk-persistence",
+]

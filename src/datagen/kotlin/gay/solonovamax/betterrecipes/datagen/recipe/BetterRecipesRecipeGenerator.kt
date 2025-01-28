@@ -80,7 +80,7 @@ class BetterRecipesRecipeGenerator(
             )
             .offerRecipe()
 
-        createShaped(RecipeCategory.DECORATIONS, Blocks.TRAPPED_CHEST, 1 * 4)
+        createShaped(RecipeCategory.DECORATIONS, Blocks.TRAPPED_CHEST, 1)
             .input('#', ItemTags.PLANKS)
             .input('t', Blocks.TRIPWIRE_HOOK)
             .pattern("###")

@@ -1,0 +1,6 @@
+accessWidener v2 named
+
+# Furnace slot indexes
+accessible field net/minecraft/block/entity/AbstractFurnaceBlockEntity INPUT_SLOT_INDEX I
+accessible field net/minecraft/block/entity/AbstractFurnaceBlockEntity FUEL_SLOT_INDEX I
+accessible field net/minecraft/block/entity/AbstractFurnaceBlockEntity OUTPUT_SLOT_INDEX I

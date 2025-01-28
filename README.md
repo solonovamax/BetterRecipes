@@ -5,9 +5,19 @@ Adds a bunch of recipes to minecraft
 <details>
 <summary>Bulk Crafting Recipes</summary>
 
+# Bulk Crafting Recipes
+
 ## Bowls
 
 ![](assets/bowl.gif)
+
+## Bread
+
+![](assets/bread.png)
+
+## Bucket
+
+![](assets/bucket.png)
 
 ## Cauldrons
 
@@ -15,39 +25,27 @@ Adds a bunch of recipes to minecraft
 
 ## Chains
 
-![](assets/chain.png)
+![](assets/chain.gif)
 
 ## Chests
 
 ![](assets/chest.gif)
 
-## Wooden Doors
+## Clock & Compass
 
-![](assets/door.gif)
+![](assets/clock_compass.gif)
 
-## Wooden Trapdoors
+## Copper Doors
 
-![](assets/trapdoor.gif)
+![](assets/copper_door.gif)
 
-## Wooden Stairs
+## Copper Trapdoors
 
-![](assets/stairs.gif)
+![](assets/copper_trapdoor.gif)
 
-## Wooden Slabs
+## Glistering Melon
 
-![](assets/slab.gif)
-
-## Wooden Pressure Plates
-
-![](assets/pressure_plate.gif)
-
-## Gold Pressure Plates
-
-![](assets/gold_pressure_plate.png)
-
-## Iron Pressure Plates
-
-![](assets/iron_pressure_plate.png)
+![](assets/glistering_melon_slice.png)
 
 ## Iron Doors
 
@@ -59,11 +57,35 @@ Adds a bunch of recipes to minecraft
 
 ## Lightning Rods
 
-![](assets/lighting_rod.png)
+![](assets/lightning_rod.png)
 
 ## Sticks
 
-![](assets/stick.gif)
+![](assets/sticks.gif)
+
+## Weighted Pressure Plates
+
+![](assets/weighted_pressure_plate.gif)
+
+## Wooden Doors
+
+![](assets/wooden_door.gif)
+
+## Wooden Trapdoors
+
+![](assets/wooden_trapdoor.gif)
+
+## Wooden Stairs
+
+![](assets/wooden_stairs.gif)
+
+## Wooden Slabs
+
+![](assets/wooden_slab.gif)
+
+## Wooden Pressure Plates
+
+![](assets/wooden_pressure_plate.gif)
 
 </details>
 
@@ -78,13 +100,9 @@ These are recipes that are primarily meant for ease-of-use.
 
 ![](assets/chest_minecart.gif)
 
-## Furnace Minecart
+## Furnace, Hopper, and TNT Minecarts
 
-![](assets/furnace_minecart.png)
-
-## Hopper Minecart
-
-![](assets/hopper_minecart.png)
+![](assets/minecart.gif)
 
 ## Dispenser
 
@@ -105,6 +123,18 @@ These are recipes that are primarily meant for ease-of-use.
 ## Trapped Chests
 
 ![](assets/trapped_chest.gif)
+
+## Mossy Cobblestone
+
+![](assets/mossy_cobblestone.gif)
+
+## Mossy Stone Bricks
+
+![](assets/mossy_stone_brick.gif)
+
+## Snow Block
+
+![](assets/snow_block.png)
 
 </details>
 
@@ -135,9 +165,15 @@ Allows for the repairing of anvils.
 
 Additionally, chorus fruit can be placed on a campfire.
 
+## Clay Balls from Clay
+
+![](assets/clay_ball.png)
+
+Allows for easily uncrafting clay without having to place it down.
+
 ## Cobwebs
 
-![](assets/cobweb.png)
+![](assets/cobweb.gif)
 
 ## Horse Armor
 
@@ -151,7 +187,7 @@ Allows for creating a jukebox from amethyst instead of diamonds.
 
 ## Smelting Rotten Flesh to Leather
 
-![](assets/leather.gif)
+![](assets/rotten_flesh.gif)
 
 ## Craftable Mushroom Blocks
 
@@ -179,15 +215,15 @@ Allows you to store your quartz in block form, and still use the item for redsto
 
 ## Smelting Raw Copper Blocks
 
-![](assets/raw_copper.gif)
+![](assets/copper_block.gif)
 
 ## Smelting Raw Gold Blocks
 
-![](assets/raw_gold.gif)
+![](assets/gold_block.gif)
 
 ## Smelting Raw Iron Blocks
 
-![](assets/raw_iron.gif)
+![](assets/iron_block.gif)
 
 ## Saddle
 
@@ -197,7 +233,7 @@ Allows you to store your quartz in block form, and still use the item for redsto
 
 Allows you to craft a shulker box without first crafting a chest.
 
-![](assets/shulkerbox.gif)
+![](assets/shulker_box.gif)
 
 ## Soul Sand & Soul Soil conversion
 
@@ -210,6 +246,10 @@ This makes soul soil renewable, as soul sand already is from bartering.
 
 Makes it easier to gather and store large amounts of string.
 
-![](assets/string.png)
+![](assets/string_from_wool.gif)
+
+## Glowing Items
+
+![](assets/glow.gif)
 
 </details>
