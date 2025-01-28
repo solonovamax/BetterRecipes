@@ -65,6 +65,10 @@ fun CraftingRecipeJsonBuilder.offerRecipe(suffix: String? = null) {
         offerTo(exporter, RegistryKey.of(RegistryKeys.RECIPE, identifierOf(path = outputItem.itemPath)))
 }
 
+fun CraftingRecipeJsonBuilder.group(item: ItemConvertible) = group(item.itemId.path)
+
+fun CraftingRecipeJsonBuilder.group(items: TagKey<Item>) = group(items.id.path)
+
 fun ItemConvertible.hasItem() = "has_$itemPath"
 
 val ItemConvertible.itemPath: String

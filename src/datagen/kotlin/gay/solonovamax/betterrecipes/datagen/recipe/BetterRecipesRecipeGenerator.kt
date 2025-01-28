@@ -7,6 +7,7 @@ import gay.solonovamax.betterrecipes.datagen.util.blastingItemPath
 import gay.solonovamax.betterrecipes.datagen.util.campfireCookingItemPath
 import gay.solonovamax.betterrecipes.datagen.util.convert
 import gay.solonovamax.betterrecipes.datagen.util.criterion
+import gay.solonovamax.betterrecipes.datagen.util.group
 import gay.solonovamax.betterrecipes.datagen.util.hasItem
 import gay.solonovamax.betterrecipes.datagen.util.id
 import gay.solonovamax.betterrecipes.datagen.util.itemPath
@@ -67,7 +68,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("###")
             .pattern("# #")
             .pattern("###")
-            .group("chest")
+            .group(Blocks.CHEST)
             .criterion(
                 "has_lots_of_items",
                 Criteria.INVENTORY_CHANGED.create(
@@ -86,7 +87,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("###")
             .pattern("#t#")
             .pattern("###")
-            .group("trapped_chest")
+            .group(Blocks.TRAPPED_CHEST)
             .criterion(Blocks.TRIPWIRE_HOOK)
             .offerRecipe()
 
@@ -94,7 +95,7 @@ class BetterRecipesRecipeGenerator(
             .input('#', Items.STICK)
             .pattern("# #")
             .pattern(" # ")
-            .group("bowl")
+            .group(Items.BOWL)
             .criterion(Blocks.BROWN_MUSHROOM)
             .criterion(Blocks.RED_MUSHROOM)
             .criterion(Items.MUSHROOM_STEW)
@@ -104,7 +105,7 @@ class BetterRecipesRecipeGenerator(
             .input('#', ItemTags.LOGS)
             .pattern("# #")
             .pattern(" # ")
-            .group("bowl")
+            .group(Items.BOWL)
             .criterion(Blocks.BROWN_MUSHROOM)
             .criterion(Blocks.RED_MUSHROOM)
             .criterion(Items.MUSHROOM_STEW)
@@ -191,7 +192,7 @@ class BetterRecipesRecipeGenerator(
             .input('#', Items.IRON_BLOCK)
             .pattern("# #")
             .pattern(" # ")
-            .group("bucket")
+            .group(Items.BUCKET)
             .criterion(Items.IRON_BLOCK)
             .offerRecipe()
 
@@ -200,7 +201,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("# #")
             .pattern("# #")
             .pattern("###")
-            .group("cauldron")
+            .group(Blocks.CAULDRON)
             .criterion(Items.WATER_BUCKET)
             .offerRecipe()
 
@@ -210,7 +211,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("I")
             .pattern("B")
             .pattern("I")
-            .group("chain")
+            .group(Blocks.CHAIN)
             .criterion(Items.IRON_BLOCK)
             .criterion(Items.IRON_INGOT)
             .offerRecipe()
@@ -220,7 +221,7 @@ class BetterRecipesRecipeGenerator(
             .input('I', Items.IRON_INGOT)
             .input('N', Items.IRON_NUGGET)
             .pattern("NIN")
-            .group("chain")
+            .group(Blocks.CHAIN)
             .criterion(Items.IRON_INGOT)
             .criterion(Items.IRON_NUGGET)
             .offerRecipe(suffix = "sideways")
@@ -229,25 +230,25 @@ class BetterRecipesRecipeGenerator(
             .input('B', Items.IRON_BLOCK)
             .input('I', Items.IRON_INGOT)
             .pattern("IBI")
-            .group("chain")
+            .group(Blocks.CHAIN)
             .criterion(Items.IRON_BLOCK)
             .criterion(Items.IRON_INGOT)
             .offerRecipe(suffix = "sideways_bulk")
 
-        offerBulkDoorRecipe(Items.IRON_BLOCK, Blocks.IRON_DOOR, "iron_door", 9)
+        offerBulkDoorRecipe(Items.IRON_BLOCK, Blocks.IRON_DOOR, 9)
 
         // region Anvils
         createShapeless(RecipeCategory.MISC, Blocks.ANVIL)
             .input(Blocks.CHIPPED_ANVIL)
             .input(Blocks.IRON_BLOCK)
-            .group("anvil")
+            .group(Blocks.ANVIL)
             .criterion(Blocks.IRON_BLOCK)
             .offerRecipe(suffix = "from_chipped_anvil")
 
         createShapeless(RecipeCategory.MISC, Blocks.CHIPPED_ANVIL)
             .input(Blocks.DAMAGED_ANVIL)
             .input(Blocks.IRON_BLOCK)
-            .group("anvil")
+            .group(Blocks.ANVIL)
             .criterion(Blocks.IRON_BLOCK)
             .offerRecipe(suffix = "from_damaged_anvil")
 
@@ -255,7 +256,7 @@ class BetterRecipesRecipeGenerator(
             .input(Blocks.DAMAGED_ANVIL)
             .input(Blocks.IRON_BLOCK)
             .input(Blocks.IRON_BLOCK)
-            .group("anvil")
+            .group(Blocks.ANVIL)
             .criterion(Blocks.IRON_BLOCK)
             .offerRecipe(suffix = "from_damaged_anvil")
         // endregion
@@ -267,7 +268,7 @@ class BetterRecipesRecipeGenerator(
             .input('C', Blocks.CHEST)
             .pattern("iCi")
             .pattern("iii")
-            .group("chest_minecart")
+            .group(Items.CHEST_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_iron_and_chest")
 
@@ -277,7 +278,7 @@ class BetterRecipesRecipeGenerator(
             .pattern(" L ")
             .pattern("iLi")
             .pattern("iii")
-            .group("chest_minecart")
+            .group(Items.CHEST_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_iron_and_logs")
 
@@ -287,7 +288,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("L")
             .pattern("L")
             .pattern("M")
-            .group("chest_minecart")
+            .group(Items.CHEST_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_minecart_and_logs")
 
@@ -297,7 +298,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("ppp")
             .pattern("pMp")
             .pattern("ppp")
-            .group("chest_minecart")
+            .group(Items.CHEST_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_minecart_and_planks")
 
@@ -306,7 +307,7 @@ class BetterRecipesRecipeGenerator(
             .input('F', Blocks.FURNACE)
             .pattern("iFi")
             .pattern("iii")
-            .group("furnace_minecart")
+            .group(Items.FURNACE_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_iron_and_furnace")
 
@@ -316,7 +317,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("ccc")
             .pattern("cMc")
             .pattern("ccc")
-            .group("furnace_minecart")
+            .group(Items.FURNACE_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_minecart_and_stone")
 
@@ -325,7 +326,7 @@ class BetterRecipesRecipeGenerator(
             .input('H', Blocks.HOPPER)
             .pattern("iHi")
             .pattern("iii")
-            .group("hopper_minecart")
+            .group(Items.HOPPER_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_iron_and_hopper")
 
@@ -336,7 +337,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("iMi")
             .pattern("iCi")
             .pattern(" i ")
-            .group("hopper_minecart")
+            .group(Items.HOPPER_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_minecart_and_chest_and_iron")
 
@@ -345,7 +346,7 @@ class BetterRecipesRecipeGenerator(
             .input('T', Blocks.TNT)
             .pattern("iTi")
             .pattern("iii")
-            .group("tnt_minecart")
+            .group(Items.TNT_MINECART)
             .criterion(Items.MINECART)
             .offerRecipe(suffix = "from_iron_and_tnt")
     }
@@ -358,52 +359,52 @@ class BetterRecipesRecipeGenerator(
             .pattern("sS ")
             .pattern("sDS")
             .pattern("sS ")
-            .group("dispenser")
+            .group(Blocks.DISPENSER)
             .criterion(Items.BOW)
             .offerRecipe(suffix = "from_dropper_and_sticks_and_string")
 
         createShapeless(RecipeCategory.REDSTONE, Blocks.DISPENSER)
             .input(Blocks.DROPPER)
             .input(Items.BOW)
-            .group("dispenser")
+            .group(Blocks.DISPENSER)
             .criterion(Items.BOW)
             .offerRecipe(suffix = "from_dropper_and_bow")
 
-        offerBulkPressurePlateRecipe(Blocks.IRON_BLOCK, Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE, "heavy_weighted_pressure_plate", 9)
-        offerBulkPressurePlateRecipe(Blocks.GOLD_BLOCK, Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE, "light_weighted_pressure_plate", 9)
+        offerBulkPressurePlateRecipe(Blocks.IRON_BLOCK, Blocks.HEAVY_WEIGHTED_PRESSURE_PLATE, 9)
+        offerBulkPressurePlateRecipe(Blocks.GOLD_BLOCK, Blocks.LIGHT_WEIGHTED_PRESSURE_PLATE, 9)
 
-        offerBulk2x2CompactingRecipe(RecipeCategory.REDSTONE, Items.IRON_BLOCK, Blocks.IRON_TRAPDOOR, "iron_trapdoor", 9)
+        offerBulk2x2CompactingRecipe(RecipeCategory.REDSTONE, Items.IRON_BLOCK, Blocks.IRON_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.COPPER_BLOCK, Blocks.COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.COPPER_BLOCK, Blocks.COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.COPPER_BLOCK, Blocks.COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.COPPER_BLOCK, Blocks.COPPER_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.WAXED_COPPER_BLOCK, Blocks.WAXED_COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.WAXED_COPPER_BLOCK, Blocks.WAXED_COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.WAXED_COPPER_BLOCK, Blocks.WAXED_COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_COPPER_BLOCK, Blocks.WAXED_COPPER_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.EXPOSED_COPPER, Blocks.EXPOSED_COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.EXPOSED_COPPER, Blocks.EXPOSED_COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.EXPOSED_COPPER, Blocks.EXPOSED_COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.EXPOSED_COPPER, Blocks.EXPOSED_COPPER_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.WAXED_EXPOSED_COPPER, Blocks.WAXED_EXPOSED_COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.WAXED_EXPOSED_COPPER, Blocks.WAXED_EXPOSED_COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.WAXED_EXPOSED_COPPER, Blocks.WAXED_EXPOSED_COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_EXPOSED_COPPER, Blocks.WAXED_EXPOSED_COPPER_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.WEATHERED_COPPER, Blocks.WEATHERED_COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.WEATHERED_COPPER, Blocks.WEATHERED_COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.WEATHERED_COPPER, Blocks.WEATHERED_COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.WEATHERED_COPPER, Blocks.WEATHERED_COPPER_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.WAXED_WEATHERED_COPPER, Blocks.WAXED_WEATHERED_COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.WAXED_WEATHERED_COPPER, Blocks.WAXED_WEATHERED_COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.WAXED_WEATHERED_COPPER, Blocks.WAXED_WEATHERED_COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_WEATHERED_COPPER, Blocks.WAXED_WEATHERED_COPPER_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.OXIDIZED_COPPER, Blocks.OXIDIZED_COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.OXIDIZED_COPPER, Blocks.OXIDIZED_COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.OXIDIZED_COPPER, Blocks.OXIDIZED_COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.OXIDIZED_COPPER, Blocks.OXIDIZED_COPPER_TRAPDOOR, 9)
 
-        offerBulkDoorRecipe(Items.WAXED_OXIDIZED_COPPER, Blocks.WAXED_OXIDIZED_COPPER_DOOR, null, 9)
-        offerBulkTrapdoorRecipe(Items.WAXED_OXIDIZED_COPPER, Blocks.WAXED_OXIDIZED_COPPER_TRAPDOOR, null, 9)
+        offerBulkDoorRecipe(Items.WAXED_OXIDIZED_COPPER, Blocks.WAXED_OXIDIZED_COPPER_DOOR, 9)
+        offerBulkTrapdoorRecipe(Items.WAXED_OXIDIZED_COPPER, Blocks.WAXED_OXIDIZED_COPPER_TRAPDOOR, 9)
 
         createShaped(RecipeCategory.REDSTONE, Blocks.LIGHTNING_ROD)
             .input('#', Blocks.COPPER_BLOCK)
             .pattern("#")
             .pattern("#")
             .pattern("#")
-            .group("lightning_rod")
+            .group(Blocks.LIGHTNING_ROD)
             .criterion(Blocks.COPPER_BLOCK)
             .offerRecipe()
 
@@ -413,16 +414,16 @@ class BetterRecipesRecipeGenerator(
             .pattern("iLi")
             .pattern("iLi")
             .pattern(" i ")
-            .group("hopper")
+            .group(Blocks.HOPPER)
             .criterion(Items.IRON_INGOT)
             .offerRecipe()
     }
 
     fun generateRawOreRecipes() {
         // smelting in bulk offers a slight efficiency boost
-        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_COPPER_BLOCK, Blocks.COPPER_BLOCK, 0.7F * 9, 200 * 6, "copper_block")
-        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK, 0.7F * 9, 200 * 6, "iron_block")
-        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_GOLD_BLOCK, Blocks.GOLD_BLOCK, 0.7F * 9, 200 * 6, "gold_block")
+        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_COPPER_BLOCK, Blocks.COPPER_BLOCK, 0.7F * 9, 200 * 6)
+        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK, 0.7F * 9, 200 * 6)
+        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_GOLD_BLOCK, Blocks.GOLD_BLOCK, 0.7F * 9, 200 * 6)
     }
 
     fun generateFoodRecipes() {
@@ -430,7 +431,7 @@ class BetterRecipesRecipeGenerator(
         createShaped(RecipeCategory.FOOD, Items.BREAD, 1 * 9)
             .input('#', Items.HAY_BLOCK)
             .pattern("###")
-            .group("bread")
+            .group(Items.BREAD)
             .criterion(Blocks.HAY_BLOCK)
             .offerRecipe()
 
@@ -440,7 +441,6 @@ class BetterRecipesRecipeGenerator(
             Items.POPPED_CHORUS_FRUIT,
             0.1F,
             200,
-            "chorus_fruit",
             includeSmelting = false, // smelting recipe for chorus fruit already exists
         )
 
@@ -450,7 +450,6 @@ class BetterRecipesRecipeGenerator(
             Items.LEATHER,
             0.35F,
             200,
-            "rotten_flesh",
         )
 
         createShaped(RecipeCategory.FOOD, Items.ENCHANTED_GOLDEN_APPLE)
@@ -472,7 +471,7 @@ class BetterRecipesRecipeGenerator(
             .pattern(" G ")
             .pattern("GRG")
             .pattern(" G ")
-            .group("clock")
+            .group(Items.CLOCK)
             .criterion(Blocks.REDSTONE_BLOCK)
             .offerRecipe()
 
@@ -484,7 +483,7 @@ class BetterRecipesRecipeGenerator(
             .pattern(" I ")
             .pattern("IRI")
             .pattern(" I ")
-            .group("compass")
+            .group(Items.COMPASS)
             .criterion(Blocks.REDSTONE_BLOCK)
             .offerRecipe()
 
@@ -496,7 +495,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("ggg")
             .pattern("gMg")
             .pattern("ggg")
-            .group("glistering_melon_slice")
+            .group(Items.GLISTERING_MELON_SLICE)
             .criterion(Items.MELON_SLICE)
             .offerRecipe()
 
@@ -507,7 +506,7 @@ class BetterRecipesRecipeGenerator(
             .pattern(" s")
             .pattern("LL")
             .pattern(" s")
-            .group("shulker_box")
+            .group(Blocks.SHULKER_BOX)
             .criterion(Items.SHULKER_SHELL)
             .offerRecipe()
 
@@ -515,7 +514,7 @@ class BetterRecipesRecipeGenerator(
             .input('C', Blocks.CHEST)
             .input('s', Items.SHULKER_SHELL)
             .pattern("sCs")
-            .group("shulker_box")
+            .group(Blocks.SHULKER_BOX)
             .criterion(Items.SHULKER_SHELL)
             .offerRecipe(suffix = "sideways")
 
@@ -524,7 +523,7 @@ class BetterRecipesRecipeGenerator(
             .input('s', Items.SHULKER_SHELL)
             .pattern(" L ")
             .pattern("sLs")
-            .group("shulker_box")
+            .group(Blocks.SHULKER_BOX)
             .criterion(Items.SHULKER_SHELL)
             .offerRecipe(suffix = "sideways_logs")
         // endregion
@@ -532,7 +531,7 @@ class BetterRecipesRecipeGenerator(
         // 4 snowball -> 1 snow block
         // 3 snow blocks -> 6 snow layers
         // => 4 snowball -> 2 snow blocks
-        offerBulk2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, Blocks.SNOW, Blocks.SNOW_BLOCK, "snow_block", 2)
+        offerBulk2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, Blocks.SNOW, Blocks.SNOW_BLOCK, 2)
 
         createShaped(RecipeCategory.DECORATIONS, Blocks.JUKEBOX)
             .input('#', ItemTags.PLANKS)
@@ -540,7 +539,7 @@ class BetterRecipesRecipeGenerator(
             .pattern("###")
             .pattern("#X#")
             .pattern("###")
-            .group("jukebox")
+            .group(Blocks.JUKEBOX)
             .criterion(Items.AMETHYST_SHARD)
             .offerRecipe()
 
@@ -575,7 +574,7 @@ class BetterRecipesRecipeGenerator(
             .input('s', Blocks.RED_MUSHROOM)
             .pattern("bs")
             .pattern("sb")
-            .group("mushroom_stem")
+            .group(Blocks.MUSHROOM_STEM)
             .criterion(Blocks.BROWN_MUSHROOM)
             .criterion(Blocks.RED_MUSHROOM)
             .offerRecipe(suffix = "1")
@@ -585,7 +584,7 @@ class BetterRecipesRecipeGenerator(
             .input('s', Blocks.RED_MUSHROOM)
             .pattern("sb")
             .pattern("bs")
-            .group("mushroom_stem")
+            .group(Blocks.MUSHROOM_STEM)
             .criterion(Blocks.BROWN_MUSHROOM)
             .criterion(Blocks.RED_MUSHROOM)
             .offerRecipe(suffix = "2")
@@ -663,7 +662,7 @@ class BetterRecipesRecipeGenerator(
             .input('B', ItemTags.CANDLES)
             .pattern("A")
             .pattern("B")
-            .group("jack_o_lantern")
+            .group(Blocks.JACK_O_LANTERN)
             .criterion(Blocks.CARVED_PUMPKIN)
             .offerRecipe()
 
@@ -683,8 +682,8 @@ class BetterRecipesRecipeGenerator(
             .criterion(Items.DRIPSTONE_BLOCK)
             .offerRecipe()
 
-        offerBulk2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, Blocks.SOUL_SAND, Blocks.SOUL_SOIL, "soul_soil", 4)
-        offerBulk2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, Blocks.SOUL_SOIL, Blocks.SOUL_SAND, "soul_sand", 4)
+        offerBulk2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, Blocks.SOUL_SAND, Blocks.SOUL_SOIL, 4)
+        offerBulk2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, Blocks.SOUL_SOIL, Blocks.SOUL_SAND, 4)
 
         createShapeless(RecipeCategory.MISC, Items.STRING, 4)
             .input(ItemTags.WOOL)
@@ -747,7 +746,7 @@ class BetterRecipesRecipeGenerator(
                     createShapeless(RecipeCategory.DECORATIONS, mossyBlock)
                         .input(baseBlock)
                         .input(conversionBlock)
-                        .group(mossyBlock.id.path)
+                        .group(mossyBlock)
                         .criterion(conversionBlock)
                         .offerRecipe(suffix = mossyBlock.convert(conversionBlock))
                 }
@@ -766,9 +765,9 @@ class BetterRecipesRecipeGenerator(
         }
     }
 
-    private fun offerBulkDoorRecipe(input: ItemConvertible, output: ItemConvertible, group: String?, factor: Int) {
+    private fun offerBulkDoorRecipe(input: ItemConvertible, output: ItemConvertible, factor: Int, group: Boolean = true) {
         createBulkDoorRecipe(input, output, factor)
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe()
     }
@@ -790,9 +789,9 @@ class BetterRecipesRecipeGenerator(
             .pattern("##")
     }
 
-    private fun offerBulkPressurePlateRecipe(input: ItemConvertible, output: ItemConvertible, group: String, factor: Int) {
+    private fun offerBulkPressurePlateRecipe(input: ItemConvertible, output: ItemConvertible, factor: Int, group: Boolean = true) {
         createBulkPressurePlateRecipe(Ingredient.ofItem(input), output, factor)
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe()
     }
@@ -824,31 +823,11 @@ class BetterRecipesRecipeGenerator(
             .pattern("###")
     }
 
-    private fun offerBulkTrapdoorRecipe(input: ItemConvertible, output: ItemConvertible, group: String?, factor: Int) {
+    private fun offerBulkTrapdoorRecipe(input: ItemConvertible, output: ItemConvertible, factor: Int, group: Boolean = true) {
         createBulkTrapdoorRecipe(input, output, factor)
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe()
-    }
-
-    private fun offerBulkGrateRecipe(input: ItemConvertible, output: ItemConvertible, group: String, factor: Int) {
-        createBulkGrateRecipe(input, output, group, factor)
-            .criterion(input)
-            .offerRecipe()
-    }
-
-    private fun createBulkGrateRecipe(
-        input: ItemConvertible,
-        output: ItemConvertible,
-        group: String,
-        factor: Int,
-    ): ShapedRecipeJsonBuilder {
-        return this.createShaped(RecipeCategory.BUILDING_BLOCKS, output, 4 * factor)
-            .input('M', input)
-            .pattern(" M ")
-            .pattern("M M")
-            .pattern(" M ")
-            .group(group)
     }
 
     private fun createBulkTrapdoorRecipe(input: ItemConvertible, output: ItemConvertible, factor: Int): CraftingRecipeJsonBuilder {
@@ -871,14 +850,14 @@ class BetterRecipesRecipeGenerator(
         category: RecipeCategory,
         input: ItemConvertible,
         output: ItemConvertible,
-        group: String,
         factor: Int,
+        group: Boolean = true,
     ) {
         createShaped(category, output, 1 * factor)
             .input('#', input)
             .pattern("##")
             .pattern("##")
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe()
     }
@@ -889,7 +868,7 @@ class BetterRecipesRecipeGenerator(
         output: ItemConvertible,
         experience: Float,
         cookingTime: Int,
-        group: String,
+        group: Boolean = true,
     ) {
         offerBlasting(category, input, output, experience, cookingTime / 2, group)
         offerSmelting(category, input, output, experience, cookingTime, group)
@@ -901,7 +880,7 @@ class BetterRecipesRecipeGenerator(
         output: ItemConvertible,
         experience: Float,
         cookingTime: Int,
-        group: String,
+        group: Boolean = true,
         includeSmelting: Boolean = true,
     ) {
         if (includeSmelting)
@@ -916,10 +895,10 @@ class BetterRecipesRecipeGenerator(
         output: ItemConvertible,
         experience: Float,
         cookingTime: Int,
-        group: String,
+        group: Boolean = true,
     ) {
         CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItem(input), category, output, experience, cookingTime)
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe(suffix = "${output.smeltingItemPath}_${input.itemPath}")
     }
@@ -930,10 +909,10 @@ class BetterRecipesRecipeGenerator(
         output: ItemConvertible,
         experience: Float,
         cookingTime: Int,
-        group: String,
+        group: Boolean = true,
     ) {
         CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItem(input), category, output, experience, cookingTime)
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe(suffix = "${output.blastingItemPath}_${input.itemPath}")
     }
@@ -944,10 +923,10 @@ class BetterRecipesRecipeGenerator(
         output: ItemConvertible,
         experience: Float,
         cookingTime: Int,
-        group: String,
+        group: Boolean = true,
     ) {
         CookingRecipeJsonBuilder.createSmoking(Ingredient.ofItem(input), category, output, experience, cookingTime)
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe(suffix = "${output.smokingItemPath}_${input.itemPath}")
     }
@@ -958,10 +937,10 @@ class BetterRecipesRecipeGenerator(
         output: ItemConvertible,
         experience: Float,
         cookingTime: Int,
-        group: String,
+        group: Boolean = true,
     ) {
         CookingRecipeJsonBuilder.createCampfireCooking(Ingredient.ofItem(input), category, output, experience, cookingTime)
-            .group(group)
+            .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe(suffix = "${output.campfireCookingItemPath}_${input.itemPath}")
     }
@@ -971,12 +950,12 @@ class BetterRecipesRecipeGenerator(
         baseItem: ItemConvertible,
         compactingCategory: RecipeCategory,
         compactItem: ItemConvertible,
-        compactingGroup: String? = null,
-        reverseGroup: String? = null,
+        compactingGroup: Boolean = true,
+        reverseGroup: Boolean = true,
     ) {
         createShapeless(reverseCategory, baseItem, 4)
             .input(compactItem)
-            .group(reverseGroup)
+            .let { if (reverseGroup) it.group(baseItem) else it }
             .criterion(compactItem)
             .offerRecipe()
 
@@ -984,7 +963,7 @@ class BetterRecipesRecipeGenerator(
             .input('#', baseItem)
             .pattern("##")
             .pattern("##")
-            .group(compactingGroup)
+            .let { if (compactingGroup) it.group(compactItem) else it }
             .criterion(baseItem)
             .offerRecipe()
     }
