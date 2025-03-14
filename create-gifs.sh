@@ -2,8 +2,13 @@
 
 mkdir assets
 ASSETS=$(realpath assets)
+RECIPES_PATH=$(realpath testmod/run/recipes)
 
-pushd testmod/run/recipes || exit
+rm -rf "$RECIPES_PATH"
+
+./gradlew :testmod:runClientGametest
+
+pushd $RECIPES_PATH || exit
 
 for folder in *; do
     FILES=$(printf '%s\n' "$folder"/* | sort | perl -pe 'chomp if eof' | tr '\n' ' ')

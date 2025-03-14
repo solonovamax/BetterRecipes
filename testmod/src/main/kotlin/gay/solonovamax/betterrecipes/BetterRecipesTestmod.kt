@@ -36,6 +36,7 @@ import net.minecraft.util.Identifier
 import net.silkmc.silk.core.math.vector.minus
 import net.silkmc.silk.core.math.vector.plus
 import net.silkmc.silk.core.math.vector.times
+import org.lwjgl.glfw.GLFW
 import org.slf4j.kotlin.getLogger
 import org.slf4j.kotlin.info
 import java.nio.file.Path
@@ -60,19 +61,26 @@ object BetterRecipesTestmod : ModInitializer, ClientModInitializer, FabricClient
     override fun runTest(context: ClientGameTestContext) {
         context.input.resizeWindow(1920, 1080)
 
-        context.runOnClient<Throwable> { client ->
-            client.options.apply {
-                guiScale.value = 4
-                viewDistance.value = 4
-                simulationDistance.value = 5
-                fullscreen.value = true
-            }
-        }
-
         val worldBuilder = context.worldBuilder()
             .setUseConsistentSettings(true)
 
         worldBuilder.create().use { singlePlayerContext ->
+            context.runOnClient<Throwable> { client ->
+                client.options.apply {
+                    guiScale.value = 4
+                    viewDistance.value = 5
+                    simulationDistance.value = 5
+                    fullscreen.value = true
+                }
+            }
+
+            singlePlayerContext.clientWorld.waitForChunksRender()
+
+            singlePlayerContext.server.computeOnServer<_, Throwable> { server ->
+                server.tickManager.tickRate = 10000.0f
+                server.tickManager.startSprint(Int.MAX_VALUE)
+            }
+
             val recipeManager = singlePlayerContext.server.computeOnServer<_, Throwable> { server -> server.recipeManager }
             recipeManager.values().asSequence().filter {
                 it.id.value.namespace == MOD_ID
@@ -102,6 +110,13 @@ object BetterRecipesTestmod : ModInitializer, ClientModInitializer, FabricClient
                     "glow" in id.path -> "glow"
                     "horse_armor" in id.path -> "horse_armor"
                     "clock" in id.path || "compass" in id.path -> "clock_compass"
+                    "cracked" in id.path -> "cracked"
+                    "glazed_terracotta" in id.path -> "glazed_terracotta"
+                    id.path.startsWith("smooth") || id.path.startsWith("stone") || id.path.startsWith("deepslate") -> when {
+                        "slab" in id.path -> "smooth_slab"
+                        "stairs" in id.path -> "smooth_stairs"
+                        else -> "smooth"
+                    }
                     else -> entry.value.group.ifEmpty { null }
                 }
             }.forEach { (group, recipes) ->
@@ -187,8 +202,6 @@ object BetterRecipesTestmod : ModInitializer, ClientModInitializer, FabricClient
                 furnace.cookingTotalTime = COOKING_TIME_STEPS * COOKING_TIME_INCREMENT
             }
 
-            singlePlayerContext.clientWorld.waitForChunksRender()
-
             context.waitTick()
 
             logger.info { "Taking screenshots for cooking recipe $recipeId" }
@@ -205,7 +218,8 @@ object BetterRecipesTestmod : ModInitializer, ClientModInitializer, FabricClient
                     furnace as AbstractFurnaceBlockEntityAccessor
                     furnace.cookingTimeSpent = iteration * COOKING_TIME_INCREMENT
                 }
-                context.input.pressMouse(1) // 1 is right click
+
+                context.input.pressMouse(GLFW.GLFW_MOUSE_BUTTON_RIGHT)
                 context.waitFor { client -> client.currentScreen is AbstractFurnaceScreen<*> }
 
                 val recipeInput = Registries.ITEM.getId(input.item).takeIf { inputs.size > 1 }
@@ -255,13 +269,11 @@ object BetterRecipesTestmod : ModInitializer, ClientModInitializer, FabricClient
                 world.setBlockState(targetPos, Blocks.CRAFTING_TABLE.defaultState)
             }
 
-            singlePlayerContext.clientWorld.waitForChunksRender()
-
             context.waitTick()
 
             logger.info { "Taking screenshots for shapeless recipe $recipeId" }
 
-            context.input.pressMouse(1) // 1 is right click
+            context.input.pressMouse(GLFW.GLFW_MOUSE_BUTTON_RIGHT)
             context.waitFor { client -> client.currentScreen is CraftingScreen }
 
             context.runOnClient<Throwable> { client ->
@@ -323,11 +335,9 @@ object BetterRecipesTestmod : ModInitializer, ClientModInitializer, FabricClient
                 world.setBlockState(targetPos, Blocks.CRAFTING_TABLE.defaultState)
             }
 
-            singlePlayerContext.clientWorld.waitForChunksRender()
-
             context.waitTick()
 
-            context.input.pressMouse(1) // 1 is right click
+            context.input.pressMouse(GLFW.GLFW_MOUSE_BUTTON_RIGHT)
             context.waitFor { client -> client.currentScreen is CraftingScreen }
 
             context.runOnClient<Throwable> { client ->
