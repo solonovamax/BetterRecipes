@@ -25,27 +25,27 @@
 - [ ] Coral -> Dye
 - [ ] Slabs -> Full Blocks
 - [ ] Blackstone + Gold Ingots -> Gilded Blackstone
-- [ ] Blast Furnace Recipes
-    - [ ] Sand -> Glass
-    - [ ] Clay & Terracotta
-        - [ ] Clay -> Bricks
-        - [ ] Clay Block -> Terracotta
-        - [ ] \* Terracotta -> \* Glazed Terracotta
-    - [ ] Cobblestone -> Stone
-    - [ ] Cobbled Deepslate -> Deepslate
-    - [ ] Netherrack -> Nether Brick
-    - [ ] Smooth Variant
-        - [ ] Stone
-        - [ ] Sandstone
-        - [ ] Red Sandstone
-        - [ ] Basalt
-        - [ ] Quartz Block
-    - [ ] Cracked Variant
-        - [ ] Stone Bricks
-        - [ ] Deepslate Bricks
-        - [ ] Deepslate Tiles
-        - [ ] Polished Blackstone Bricks
-        - [ ] Nether Bricks
+- [x] Blast Furnace Recipes
+    - [x] Sand -> Glass
+    - [x] Clay & Terracotta
+        - [X] Clay -> Bricks
+        - [x] Clay Block -> Terracotta
+        - [x] \* Terracotta -> \* Glazed Terracotta
+    - [x] Cobblestone -> Stone
+    - [x] Cobbled Deepslate -> Deepslate
+    - [x] Netherrack -> Nether Brick
+    - [x] Smooth Variant
+        - [x] Stone
+        - [x] Sandstone
+        - [x] Red Sandstone
+      - [x] Basalt
+        - [x] Quartz Block
+    - [x] Cracked Variant
+        - [x] Stone Bricks
+        - [x] Deepslate Bricks
+        - [x] Deepslate Tiles
+        - [x] Polished Blackstone Bricks
+        - [x] Nether Bricks
 
 ### Consider Ideas For
 

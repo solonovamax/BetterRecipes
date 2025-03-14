@@ -2,13 +2,6 @@
 
 package gay.solonovamax.betterrecipes.datagen.util
 
-import java.util.concurrent.CompletableFuture
-import kotlin.reflect.KClass
-import kotlin.reflect.full.createType
-import kotlin.reflect.full.isSubclassOf
-import kotlin.reflect.full.isSubtypeOf
-import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.jvm.jvmErasure
 import gay.solonovamax.betterrecipes.datagen.recipe.BetterRecipesRecipeGenerator
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator.Pack
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -19,9 +12,17 @@ import net.minecraft.data.recipe.CraftingRecipeJsonBuilder
 import net.minecraft.data.recipe.RecipeGenerator.hasItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemConvertible
+import net.minecraft.recipe.Ingredient
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.tag.TagKey
+import java.util.concurrent.CompletableFuture
+import kotlin.reflect.KClass
+import kotlin.reflect.full.createType
+import kotlin.reflect.full.isSubclassOf
+import kotlin.reflect.full.isSubtypeOf
+import kotlin.reflect.full.primaryConstructor
+import kotlin.reflect.jvm.jvmErasure
 import net.minecraft.data.family.BlockFamily.Variant as FamilyVariant
 
 operator fun BlockFamily.get(variant: FamilyVariant): Block = getVariant(variant)
@@ -68,6 +69,11 @@ fun CraftingRecipeJsonBuilder.offerRecipe(suffix: String? = null) {
 fun CraftingRecipeJsonBuilder.group(item: ItemConvertible) = group(item.itemId.path)
 
 fun CraftingRecipeJsonBuilder.group(items: TagKey<Item>) = group(items.id.path)
+
+context(BetterRecipesRecipeGenerator)
+fun TagKey<Item>.asIngredient(): Ingredient {
+    return Ingredient.fromTag(itemLookup.getOrThrow(this))
+}
 
 fun ItemConvertible.hasItem() = "has_$itemPath"
 

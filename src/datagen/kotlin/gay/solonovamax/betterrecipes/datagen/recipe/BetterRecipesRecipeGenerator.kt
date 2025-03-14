@@ -1,8 +1,6 @@
 package gay.solonovamax.betterrecipes.datagen.recipe
 
-import java.util.concurrent.CompletableFuture
-import kotlin.jvm.optionals.getOrNull
-import kotlin.streams.asSequence
+import gay.solonovamax.betterrecipes.datagen.util.asIngredient
 import gay.solonovamax.betterrecipes.datagen.util.blastingItemPath
 import gay.solonovamax.betterrecipes.datagen.util.campfireCookingItemPath
 import gay.solonovamax.betterrecipes.datagen.util.convert
@@ -35,11 +33,15 @@ import net.minecraft.item.Items
 import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.Registries
+import net.minecraft.registry.RegistryEntryLookup
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.tag.ItemTags
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.Identifier
+import java.util.concurrent.CompletableFuture
+import kotlin.jvm.optionals.getOrNull
+import kotlin.streams.asSequence
 import net.minecraft.predicate.NumberRange.IntRange as MojangIntRange
 
 @Suppress("SameParameterValue")
@@ -47,12 +49,15 @@ class BetterRecipesRecipeGenerator(
     registries: RegistryWrapper.WrapperLookup,
     val exporter: RecipeExporter,
 ) : RecipeGenerator(registries, exporter) {
+    val itemLookup: RegistryEntryLookup<Item> = registries.getOrThrow(RegistryKeys.ITEM)
+
     override fun generate() {
         generateWoodenRecipes()
         generateIronRecipes()
         generateMinecartRecipes()
         generateRedstoneRecipes()
         generateRawOreRecipes()
+        generateBlastingRecipes()
         generateFoodRecipes()
         generateMiscRecipes()
         generateStoneRecipes()
@@ -421,9 +426,42 @@ class BetterRecipesRecipeGenerator(
 
     fun generateRawOreRecipes() {
         // smelting in bulk offers a slight efficiency boost
-        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_COPPER_BLOCK, Blocks.COPPER_BLOCK, 0.7F * 9, 200 * 6)
-        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK, 0.7F * 9, 200 * 6)
-        offerOreCooking(RecipeCategory.MISC, Blocks.RAW_GOLD_BLOCK, Blocks.GOLD_BLOCK, 0.7F * 9, 200 * 6)
+        offerBlastingAndSmelting(RecipeCategory.MISC, Blocks.RAW_COPPER_BLOCK, Blocks.COPPER_BLOCK, 0.7F * 9, 200 * 6)
+        offerBlastingAndSmelting(RecipeCategory.MISC, Blocks.RAW_IRON_BLOCK, Blocks.IRON_BLOCK, 0.7F * 9, 200 * 6)
+        offerBlastingAndSmelting(RecipeCategory.MISC, Blocks.RAW_GOLD_BLOCK, Blocks.GOLD_BLOCK, 0.7F * 9, 200 * 6)
+    }
+
+    fun generateBlastingRecipes() {
+        offerBlasting(RecipeCategory.BUILDING_BLOCKS, ItemTags.SMELTS_TO_GLASS, Blocks.GLASS, 0.1f, 200 / 2)
+        offerBlasting(RecipeCategory.BUILDING_BLOCKS, Blocks.CLAY, Blocks.TERRACOTTA, 0.35f, 200 / 2)
+        offerBlasting(RecipeCategory.BUILDING_BLOCKS, Items.CLAY_BALL, Items.BRICK, 0.3f, 200 / 2)
+        offerBlasting(RecipeCategory.BUILDING_BLOCKS, Blocks.NETHERRACK, Items.NETHER_BRICK, 0.1f, 200 / 2)
+
+        offerBlasting(RecipeCategory.BUILDING_BLOCKS, Blocks.STONE, Blocks.SMOOTH_STONE, 0.1f, 200 / 2)
+        offerBlasting(RecipeCategory.BUILDING_BLOCKS, Blocks.BASALT, Blocks.SMOOTH_BASALT, 0.1f, 200 / 2)
+
+        for ((baseFamily, smoothFamily) in SMOOTH_CONVERSION_FAMILIES) {
+            offerBlasting(RecipeCategory.BUILDING_BLOCKS, baseFamily.baseBlock, smoothFamily.baseBlock, 0.1f, 200 / 2)
+
+            for ((variant, baseBlock) in baseFamily.variants) {
+                val smoothBlock = smoothFamily.variants[variant] ?: continue
+                offerBlastingAndSmelting(RecipeCategory.BUILDING_BLOCKS, baseBlock, smoothBlock, 0.1f, 200 / 2)
+            }
+        }
+
+        for (family in CRACKABLE_FAMILIES) {
+            val crackedBlock = family.variants[Variant.CRACKED] ?: continue
+            val baseBlock = family.baseBlock
+
+            if (family.baseBlock != Blocks.STONE_BRICKS)
+                offerSmelting(RecipeCategory.BUILDING_BLOCKS, baseBlock, crackedBlock, 0.1f, 200)
+
+            offerBlasting(RecipeCategory.BUILDING_BLOCKS, baseBlock, crackedBlock, 0.1f, 200 / 2)
+        }
+
+        for ((terracottaBlock, glazedTerracottaBlock) in TERRACOTTA_GLAZING_BLOCKS) {
+            offerBlasting(RecipeCategory.BUILDING_BLOCKS, terracottaBlock, glazedTerracottaBlock, 0.1f, 200 / 2)
+        }
     }
 
     fun generateFoodRecipes() {
@@ -723,26 +761,11 @@ class BetterRecipesRecipeGenerator(
     }
 
     fun generateStoneRecipes() {
-        val stonecutterConversionFamilies = mapOf(
-            BlockFamilies.DEEPSLATE to BlockFamilies.COBBLED_DEEPSLATE,
-            BlockFamilies.STONE to BlockFamilies.COBBLESTONE,
-        )
-
-        val mossyConversionFamilies = mapOf(
-            BlockFamilies.COBBLESTONE to BlockFamilies.MOSSY_COBBLESTONE,
-            BlockFamilies.STONE_BRICK to BlockFamilies.MOSSY_STONE_BRICK
-        )
-
-        val mossyConversionBlocks = listOf(
-            Blocks.VINE,
-            Blocks.MOSS_BLOCK
-        )
-
-        for ((baseFamily, mossyFamily) in mossyConversionFamilies) {
+        for ((baseFamily, mossyFamily) in MOSSY_CONVERSION_FAMILIES) {
             for ((variant, baseBlock) in baseFamily.variants) {
-                val mossyBlock = mossyFamily.getVariant(variant) ?: continue
+                val mossyBlock = mossyFamily.variants[variant] ?: continue
 
-                for (conversionBlock in mossyConversionBlocks) {
+                for (conversionBlock in MOSSY_CONVERSION_BLOCKS) {
                     createShapeless(RecipeCategory.DECORATIONS, mossyBlock)
                         .input(baseBlock)
                         .input(conversionBlock)
@@ -753,12 +776,12 @@ class BetterRecipesRecipeGenerator(
             }
         }
 
-        for ((baseFamily, cobbledFamily) in stonecutterConversionFamilies) {
+        for ((baseFamily, cobbledFamily) in STONECUTTER_CONVERSION_FAMILIES) {
             offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, baseFamily.baseBlock, cobbledFamily.baseBlock)
             offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, cobbledFamily.baseBlock, baseFamily.baseBlock)
 
             for ((variant, baseBlock) in baseFamily.variants) {
-                val cobbledBlock = cobbledFamily.getVariant(variant) ?: continue
+                val cobbledBlock = cobbledFamily.variants[variant] ?: continue
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, cobbledBlock, baseBlock)
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, baseBlock, cobbledBlock)
             }
@@ -862,7 +885,7 @@ class BetterRecipesRecipeGenerator(
             .offerRecipe()
     }
 
-    private fun offerOreCooking(
+    private fun offerBlastingAndSmelting(
         category: RecipeCategory,
         input: ItemConvertible,
         output: ItemConvertible,
@@ -915,6 +938,37 @@ class BetterRecipesRecipeGenerator(
             .let { if (group) it.group(output) else it }
             .criterion(input)
             .offerRecipe(suffix = "${output.blastingItemPath}_${input.itemPath}")
+    }
+
+    private fun offerBlasting(
+        category: RecipeCategory,
+        input: TagKey<Item>,
+        output: ItemConvertible,
+        experience: Float,
+        cookingTime: Int,
+        group: Boolean = true,
+    ) {
+        CookingRecipeJsonBuilder.createBlasting(input.asIngredient(), category, output, experience, cookingTime)
+            .let { if (group) it.group(output) else it }
+            .criterion(input)
+            .offerRecipe(suffix = "${output.blastingItemPath}_${input.id.path}")
+    }
+
+    private fun offerBlasting(
+        category: RecipeCategory,
+        inputs: List<ItemConvertible>,
+        output: ItemConvertible,
+        experience: Float,
+        cookingTime: Int,
+        group: Boolean = true,
+    ) {
+        val ingredient = Ingredient.ofItems(*inputs.toTypedArray())
+        CookingRecipeJsonBuilder.createBlasting(ingredient, category, output, experience, cookingTime)
+            .let { if (group) it.group(output) else it }
+            .let { builder ->
+                inputs.fold(builder) { builder, input -> builder.criterion(input) }
+            }
+            .offerRecipe(suffix = output.blastingItemPath)
     }
 
     private fun offerSmoking(
@@ -990,6 +1044,56 @@ class BetterRecipesRecipeGenerator(
         private val STEMS = listOf(
             "warped",
             "crimson",
+        )
+
+        private val SMOOTH_CONVERSION_FAMILIES = mapOf(
+            BlockFamilies.COBBLESTONE to BlockFamilies.STONE,
+            BlockFamilies.COBBLED_DEEPSLATE to BlockFamilies.DEEPSLATE,
+            BlockFamilies.SANDSTONE to BlockFamilies.SMOOTH_SANDSTONE,
+            BlockFamilies.RED_SANDSTONE to BlockFamilies.SMOOTH_RED_SANDSTONE,
+            BlockFamilies.QUARTZ_BLOCK to BlockFamilies.SMOOTH_QUARTZ,
+        )
+
+        private val CRACKABLE_FAMILIES = listOf(
+            BlockFamilies.POLISHED_BLACKSTONE_BRICK,
+            BlockFamilies.NETHER_BRICK,
+            BlockFamilies.STONE_BRICK,
+            BlockFamilies.DEEPSLATE_BRICK,
+            BlockFamilies.DEEPSLATE_TILE,
+        )
+
+        private val TERRACOTTA_GLAZING_BLOCKS = listOf(
+            Blocks.BLACK_TERRACOTTA to Blocks.BLACK_GLAZED_TERRACOTTA,
+            Blocks.BLUE_TERRACOTTA to Blocks.BLUE_GLAZED_TERRACOTTA,
+            Blocks.BROWN_TERRACOTTA to Blocks.BROWN_GLAZED_TERRACOTTA,
+            Blocks.CYAN_TERRACOTTA to Blocks.CYAN_GLAZED_TERRACOTTA,
+            Blocks.GRAY_TERRACOTTA to Blocks.GRAY_GLAZED_TERRACOTTA,
+            Blocks.GREEN_TERRACOTTA to Blocks.GREEN_GLAZED_TERRACOTTA,
+            Blocks.LIGHT_BLUE_TERRACOTTA to Blocks.LIGHT_BLUE_GLAZED_TERRACOTTA,
+            Blocks.LIGHT_GRAY_TERRACOTTA to Blocks.LIGHT_GRAY_GLAZED_TERRACOTTA,
+            Blocks.LIME_TERRACOTTA to Blocks.LIME_GLAZED_TERRACOTTA,
+            Blocks.MAGENTA_TERRACOTTA to Blocks.MAGENTA_GLAZED_TERRACOTTA,
+            Blocks.ORANGE_TERRACOTTA to Blocks.ORANGE_GLAZED_TERRACOTTA,
+            Blocks.PINK_TERRACOTTA to Blocks.PINK_GLAZED_TERRACOTTA,
+            Blocks.PURPLE_TERRACOTTA to Blocks.PURPLE_GLAZED_TERRACOTTA,
+            Blocks.RED_TERRACOTTA to Blocks.RED_GLAZED_TERRACOTTA,
+            Blocks.WHITE_TERRACOTTA to Blocks.WHITE_GLAZED_TERRACOTTA,
+            Blocks.YELLOW_TERRACOTTA to Blocks.YELLOW_GLAZED_TERRACOTTA,
+        )
+
+        private val MOSSY_CONVERSION_BLOCKS = listOf(
+            Blocks.VINE,
+            Blocks.MOSS_BLOCK
+        )
+
+        private val STONECUTTER_CONVERSION_FAMILIES = mapOf(
+            BlockFamilies.DEEPSLATE to BlockFamilies.COBBLED_DEEPSLATE,
+            BlockFamilies.STONE to BlockFamilies.COBBLESTONE,
+        )
+
+        private val MOSSY_CONVERSION_FAMILIES = mapOf(
+            BlockFamilies.COBBLESTONE to BlockFamilies.MOSSY_COBBLESTONE,
+            BlockFamilies.STONE_BRICK to BlockFamilies.MOSSY_STONE_BRICK
         )
     }
 }

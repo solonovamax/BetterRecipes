@@ -15,8 +15,8 @@ fabric-language-kotlin = "1.13.1+kotlin.2.1.10"
 
 silk = "1.11.0-all-prs-SNAPSHOT"
 
-mixin = "+"
-mixinextras = "+"
+mixin = "0.15.5+mixin.0.8.7"
+mixinextras = "0.4.1"
 
 slf4k = "0.5.3"
 
