@@ -1,18 +1,14 @@
 package gay.solonovamax.betterrecipes
 
-import java.nio.file.Path
-import javax.imageio.ImageIO
-import kotlin.io.path.inputStream
-import kotlin.io.path.outputStream
 import com.google.common.collect.Lists
 import gay.solonovamax.betterrecipes.mixin.AbstractFurnaceBlockEntityAccessor
 import gay.solonovamax.betterrecipes.mixin.LockableContainerBlockEntityAccessor
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.api.ModInitializer
-import net.fabricmc.fabric.api.client.gametest.v1.ClientGameTestContext
 import net.fabricmc.fabric.api.client.gametest.v1.FabricClientGameTest
-import net.fabricmc.fabric.api.client.gametest.v1.TestScreenshotOptions
-import net.fabricmc.fabric.api.client.gametest.v1.TestSingleplayerContext
+import net.fabricmc.fabric.api.client.gametest.v1.context.ClientGameTestContext
+import net.fabricmc.fabric.api.client.gametest.v1.context.TestSingleplayerContext
+import net.fabricmc.fabric.api.client.gametest.v1.screenshot.TestScreenshotOptions
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.AbstractFurnaceBlock
 import net.minecraft.block.Blocks
@@ -42,6 +38,10 @@ import net.silkmc.silk.core.math.vector.plus
 import net.silkmc.silk.core.math.vector.times
 import org.slf4j.kotlin.getLogger
 import org.slf4j.kotlin.info
+import java.nio.file.Path
+import javax.imageio.ImageIO
+import kotlin.io.path.inputStream
+import kotlin.io.path.outputStream
 
 
 @Suppress("UnstableApiUsage")

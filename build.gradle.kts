@@ -2,8 +2,10 @@ import ca.solostudios.nyx.plugin.minecraft.NyxMinotaurExtension.VersionType
 import ca.solostudios.nyx.plugin.minecraft.loom.FabricModJson.Environment
 import ca.solostudios.nyx.util.fabric
 import ca.solostudios.nyx.util.soloStudios
+import ca.solostudios.nyx.util.soloStudiosSnapshots
 import net.fabricmc.loom.task.RunGameTask
 import org.gradle.jvm.tasks.Jar
+import kotlin.reflect.KProperty
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -58,8 +60,6 @@ nyx {
             modId = "better-recipes"
         }
 
-        // accessWidener("beaconoverhaul")
-
         additionalJvmProperties.putAll(
             mapOf(
                 "fabric-tag-conventions-v2.missingTagTranslationWarning" to "FAIL",
@@ -72,7 +72,7 @@ nyx {
             verbose = false
             export = true
 
-            // mixinRefmapName("beaconoverhaul")
+            mixinRefmapName("betterrecipes")
         }
 
         fabricModJson {
@@ -81,7 +81,23 @@ nyx {
                 homepage = "https://github.com/solonovamax/BetterRecipes/"
                 environment = Environment.UNIVERSAL
             }
-            depends("minecraft", ">=1.21")
+            val minecraftVersion by libs.versions.minecraft
+            depends("minecraft", ">=$minecraftVersion")
+            // val fabricApiVersion by libs.versions.fabric.api
+            // depends("fabric-api", ">=$fabricApiVersion")
+            // val fabricLanguageKotlinVersion by libs.versions.fabric.language.kotlin
+            // depends("fabric-language-kotlin", ">=$fabricLanguageKotlinVersion")
+            // for now, these are bundled
+            // val silkVersion by libs.versions.silk
+            // depends("silk-core", ">=$silkVersion")
+            // depends("silk-game", ">=$silkVersion")
+            // depends("silk-igui", ">=$silkVersion")
+            // depends("silk-nbt", ">=$silkVersion")
+            // depends("silk-network", ">=$silkVersion")
+            // depends("silk-persistence", ">=$silkVersion")
+            // depends("silk-fabric", ">=$silkVersion")
+            // val mixinExtrasVersion by libs.versions.mixinextras
+            // depends("mixinextras", ">=$mixinExtrasVersion")
 
             entrypoints {
                 entry("fabric-datagen") {
@@ -98,6 +114,8 @@ nyx {
             dependencies {
                 // required("fabric-api")
                 // required("fabric-language-kotlin")
+                // for now, we use a bundled version of silk
+                // embedded("silk")
 
                 // optional("modmenu")
 
@@ -111,6 +129,7 @@ nyx {
 
 repositories {
     soloStudios()
+    soloStudiosSnapshots()
     fabric()
     mavenCentral()
 }
@@ -128,13 +147,14 @@ dependencies {
     modImplementation(libs.fabric.api)
     modImplementation(libs.fabric.language.kotlin)
 
-    // annotationProcessor(libs.sponge.mixin)
-    // implementation(libs.sponge.mixin)
-    //
-    // annotationProcessor(libs.mixinextras)
-    // implementation(libs.mixinextras)
+    modImplementation(libs.bundles.silk)
 
-    // only used for datagen
+    annotationProcessor(libs.sponge.mixin)
+    implementation(libs.sponge.mixin)
+
+    annotationProcessor(libs.mixinextras)
+    implementation(libs.mixinextras)
+
     implementation(libs.slf4k)
 }
 
@@ -150,9 +170,17 @@ tasks {
     }
 }
 
-// modrinth {
-//     syncBodyFrom.set(rootProject.file("README.md").toRelativeString(rootDir))
-// }
+modrinth {
+    val branchProvider = scmVersion.versionProvider().map { version -> version.position.branch }
+    val baseUrlProvider = nyx.info.repository.projectPath.zip(branchProvider) { repoPath, branch -> "https://raw.githubusercontent.com/$repoPath/$branch" }
+    val body = rootProject.file("README.md").readText().replace("!\\[\\]\\((.*)\\)".toRegex()) { match ->
+        val (path) = match.destructured
+        baseUrlProvider.map { baseUrl -> "![]($baseUrl/$path)" }.get()
+    }
+    syncBodyFrom.set(body)
+}
 
 val Project.isSnapshot: Boolean
     get() = version.toString().endsWith("-SNAPSHOT")
+
+operator fun <T> Provider<T>.getValue(thisRef: Any?, property: KProperty<*>): T = get()

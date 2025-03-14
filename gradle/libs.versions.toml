@@ -1,22 +1,22 @@
 [versions]
-kotlin = "2.1.0"
+kotlin = "2.1.10"
 nyx = "0.3.0-SNAPSHOT"
 
 axion-release = "1.18.16"
 
 minotaur = "2.8.7"
 
-loom = "1.9.2"
+loom = "1.10.4"
 minecraft = "1.21.4"
-fabric-loader = "0.16.9"
-fabric-yarn = "1.21.4+build.2"
-fabric-api = "0.115.0+1.21.4"
-fabric-language-kotlin = "1.13.0+kotlin.2.1.0"
+fabric-loader = "0.16.10"
+fabric-yarn = "1.21.4+build.8"
+fabric-api = "0.118.5+1.21.4"
+fabric-language-kotlin = "1.13.1+kotlin.2.1.10"
 
 silk = "1.11.0-all-prs-SNAPSHOT"
 
-mixin = "0.15.4+mixin.0.8.7"
-mixinextras = "0.4.1"
+mixin = "+"
+mixinextras = "+"
 
 slf4k = "0.5.3"
 
@@ -53,6 +53,7 @@ silk-igui = { group = "gay.solonovamax", name = "silk-igui", version.ref = "silk
 silk-nbt = { group = "gay.solonovamax", name = "silk-nbt", version.ref = "silk" }
 silk-network = { group = "gay.solonovamax", name = "silk-network", version.ref = "silk" }
 silk-persistence = { group = "gay.solonovamax", name = "silk-persistence", version.ref = "silk" }
+silk-fabric = { group = "gay.solonovamax", name = "silk-fabric", version.ref = "silk" }
 
 [bundles]
 silk = [
@@ -62,4 +63,5 @@ silk = [
     "silk-nbt",
     "silk-network",
     "silk-persistence",
+    "silk-fabric",
 ]
